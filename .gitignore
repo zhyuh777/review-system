@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+*.py
+circuit_question_bank.json
+exercise_answers.json
+extracted_questions/
+universal_review/config.js
+universal_review/data.js
+design_*
+debug_*
