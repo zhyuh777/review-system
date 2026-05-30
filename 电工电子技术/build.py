@@ -13,7 +13,7 @@ with open(os.path.join(BASE, 'questions.json'), encoding='utf-8') as f:
 qjson = json.dumps(qb, ensure_ascii=False)
 html = html.replace('__QB_DATA__', qjson)
 
-out = os.path.join(BASE, '..', '电工电子技术刷题平台.html')
+out = os.path.join(BASE, '电工电子技术刷题平台.html')
 with open(out, 'w', encoding='utf-8') as f:
     f.write(html)
 

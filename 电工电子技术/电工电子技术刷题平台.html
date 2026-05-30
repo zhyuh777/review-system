@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>电工电子技术 · 复习系统</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#f5f7fa;color:#1e293b;padding-bottom:90px}
+.login{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;background:#f5f7fa;padding:20px}
+.login.hide{display:none}
+.lb{background:#fff;border-radius:24px;padding:40px 32px;width:100%;max-width:360px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+.lb h1{font-size:24px;font-weight:700;margin-bottom:4px}
+.lb p{font-size:14px;color:#64748b;margin-bottom:28px}
+.lb input{width:100%;padding:14px 16px;border:1.5px solid #e2e8f0;border-radius:12px;font-size:15px;margin-bottom:12px;outline:none}
+.lb input:focus{border-color:#2563eb}
+.lb button{width:100%;padding:14px;border:none;border-radius:12px;background:#2563eb;color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+.lb .err{color:#dc2626;font-size:12px;margin-top:10px;display:none}
+.app{max-width:76vw;margin:0 auto;padding:24px 40px 0;display:none}
+.app.s{display:block}
+.hd{display:flex;justify-content:space-between;align-items:flex-end;padding:4px 0 20px;margin-bottom:20px;border-bottom:1px solid #e2e8f0}
+.hd .tt{font-size:28px;font-weight:800}
+.hd .info{font-size:13px;color:#64748b}
+.card{background:#fff;border-radius:16px;padding:24px 28px;margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.h3{font-size:15px;font-weight:600;color:#64748b;margin-bottom:14px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.g4{background:#fff;border-radius:16px;padding:24px 16px;text-align:center}
+.g4 .n{font-size:32px;font-weight:800}
+.g4 .l{font-size:12px;color:#64748b;margin-top:4px}
+.bar{height:10px;background:#e5e7eb;border-radius:5px;overflow:hidden;margin:6px 0 12px}
+.bf{height:100%;border-radius:5px;transition:width .6s}
+.leg{display:flex;justify-content:space-between;font-size:10px;color:#64748b}
+.pr{display:flex;align-items:center;gap:12px;padding:10px 0;font-size:14px}
+.pr+.pr{border-top:1px solid #f1f5f9}
+.pr .tr{flex:1;height:7px;background:#e5e7eb;border-radius:4px;overflow:hidden}
+.pr .fl{height:100%;border-radius:4px;transition:width .5s}
+.pr .pct{font-weight:600;min-width:36px;text-align:right;font-size:13px}
+.pr .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mc{padding:24px 14px;background:#fff;border-radius:16px;text-align:center;cursor:pointer;transition:all .12s}
+.mc:active{transform:scale(.97)}
+.mc .mi{font-size:30px;margin-bottom:8px;display:block}
+.mc .mn{font-size:14px;font-weight:600}
+.qw{background:#fff;border-radius:16px;padding:24px}
+.qm{display:flex;justify-content:space-between;margin-bottom:14px;font-size:12px;color:#64748b}
+.qt{padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600}
+.qtc{background:#eff6ff;color:#2563eb}
+.qtt{background:#fef3c7;color:#d97706}
+.qtf{background:#f3e8ff;color:#7c3aed}
+.qtp{background:#fce4ec;color:#dc2626}
+.qts{background:#fce7f3;color:#db2777}
+.qtx{font-size:16px;line-height:1.7;margin-bottom:18px}
+.qimg{max-width:100%;margin:8px 0;border-radius:8px;border:1px solid #e2e8f0;display:block}
+.qo{display:flex;align-items:center;gap:10px;padding:13px 16px;border:1.5px solid #e2e8f0;border-radius:10px;margin-bottom:6px;cursor:pointer}
+.qo .lt{width:28px;height:28px;border-radius:50%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#64748b;flex-shrink:0}
+.qo.sel{border-color:#2563eb;background:#eff6ff}
+.qo.sel .lt{background:#2563eb;color:#fff}
+.qo.ok{border-color:#16a34a;background:#f0fdf4}
+.qo.ok .lt{background:#16a34a;color:#fff}
+.qo.no{border-color:#dc2626;background:#fef2f2}
+.qo.no .lt{background:#dc2626;color:#fff}
+.tfb{flex:1;padding:15px;border:1.5px solid #e2e8f0;border-radius:10px;text-align:center;cursor:pointer;font-size:14px;font-weight:600}
+.tfb.st{border-color:#16a34a;color:#16a34a;background:#f0fdf4}
+.tfb.sf{border-color:#dc2626;color:#dc2626;background:#fef2f2}
+.inp{width:100%;padding:12px 16px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:15px;outline:none;margin-bottom:8px}
+.inp:focus{border-color:#2563eb}
+.res{padding:14px 18px;border-radius:10px;font-size:15px;display:none;margin-bottom:8px}
+.res.s{display:block}
+.res.good{background:#f0fdf4;color:#16a34a}
+.res.bad{background:#fef2f2;color:#dc2626}
+.btns{display:flex;gap:8px;padding:6px 0 2px}
+.btn{flex:1;padding:12px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.bp{background:#2563eb;color:#fff}
+.bo{background:transparent;border:1.5px solid #e2e8f0}
+.bs{background:#16a34a;color:#fff}
+.be{background:#dc2626;color:#fff}
+.nd{display:flex;gap:4px;justify-content:center;padding:10px 0 2px;flex-wrap:wrap}
+.nd-d{width:10px;height:10px;border-radius:50%;background:#d1d5db;cursor:pointer;flex-shrink:0}
+.nd-d.cu{border:2px solid #2563eb;background:#2563eb;transform:scale(1.3)}
+.nd-d.ok{background:#16a34a}
+.nd-d.no{background:#dc2626}
+.tab{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);max-width:560px;width:92%;background:#fff;border-radius:20px;box-shadow:0 2px 12px rgba(0,0,0,.08);display:flex;padding:4px;z-index:100}
+.ti{flex:1;text-align:center;padding:14px 0;cursor:pointer;font-size:15px;font-weight:600;color:#64748b;border-radius:16px}
+.ti.a{background:#2563eb;color:#fff}
+.pg{display:none}
+.pg.a{display:block}
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:200;align-items:flex-end;justify-content:center}
+.mo.s{display:flex}
+.ms{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:500px;max-height:70vh;overflow:hidden;display:flex;flex-direction:column}
+.mh{padding:16px 20px;border-bottom:1px solid #e2e8f0;font-size:16px;font-weight:600;display:flex;justify-content:space-between}
+.mb{padding:8px 20px 14px;overflow-y:auto;flex:1}
+.mf{padding:12px 20px;border-top:1px solid #e2e8f0;display:flex;gap:8px;justify-content:flex-end}
+.cs{display:flex;align-items:center;gap:10px;padding:12px 0;cursor:pointer}
+.cs+.cs{border-top:1px solid #f1f5f9}
+.cbx{width:20px;height:20px;border:2px solid #d1d5db;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.cbx.on{background:#2563eb;border-color:#2563eb}
+.cbx.on::after{content:"✓";color:#fff;font-size:11px;font-weight:700}
+.sr{display:flex;justify-content:space-between;align-items:center;padding:12px 0;font-size:14px}
+.sr+.sr{border-top:1px solid #f1f5f9}
+.sgg{display:flex;gap:4px;background:#f1f5f9;border-radius:8px;padding:3px}
+.sgg span{padding:6px 14px;border-radius:7px;font-size:12px;cursor:pointer}
+.sgg span.a{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.sb{padding:6px 16px;border-radius:8px;border:1px solid #dc2626;background:transparent;color:#dc2626;font-size:12px;cursor:pointer}
+.sb.bl{border-color:#2563eb;color:#2563eb}
+@media(max-width:600px){.grid4{grid-template-columns:repeat(2,1fr)}.mg{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<div class="login" id="lp">
+  <div class="lb">
+    <h1>电工电子技术</h1>
+    <p>复习系统</p>
+    <input id="si" placeholder="学号">
+    <input id="sn" placeholder="姓名">
+    <button id="lbtn">进入系统</button>
+    <div class="err" id="le">请填写学号和姓名</div>
+  </div>
+</div>
+
+<div class="app" id="app">
+  <div class="pg a" id="p0">
+    <div class="hd"><div class="tt">数据看板</div><div class="info"><span id="dt"></span></div></div>
+    <div class="grid4" id="g1"></div>
+    <div class="card"><div class="h3">总体掌握度</div><div id="ov"></div></div>
+    <div class="card"><div class="h3">各章节</div><div id="ch"></div></div>
+    <div class="card"><div class="h3">各题型</div><div id="tp"></div></div>
+    <div class="card"><div class="h3">练习记录</div><div id="sr"></div></div>
+  </div>
+
+  <div class="pg" id="p1">
+    <div class="hd"><div class="tt">练习中心</div><div class="info" id="ps"></div></div>
+    <div id="mArea"><div class="mg" id="mg">
+      <div class="mc" onclick="sm(0)"><span class="mi">🎲</span><div class="mn">随机练习</div><div class="md">所有题型混合抽题</div></div>
+      <div class="mc" onclick="sm(1)"><span class="mi">📋</span><div class="mn">顺序练习</div><div class="md">按类型顺序出题</div></div>
+      <div class="mc" onclick="scs()"><span class="mi">📂</span><div class="mn">章节练习</div><div class="md">选择章节专项练习</div></div>
+      <div class="mc" onclick="sts()"><span class="mi">🎯</span><div class="mn">题型专练</div><div class="md">选择题型集中训练</div></div>
+      <div class="mc" onclick="sm(2)"><span class="mi">🔄</span><div class="mn">错题重练</div><div class="md">只做之前答错的题</div></div>
+      <div class="mc" onclick="sm(3)"><span class="mi">🤖</span><div class="mn">薄弱推荐</div><div class="md">优先出掌握度低的题</div></div>
+    </div></div>
+    <div id="qa" style="display:none"></div>
+  </div>
+
+  <div class="pg" id="p2">
+    <div class="hd"><div class="tt">设置</div></div>
+    <div class="card">
+      <div class="sr"><span>当前用户</span><button class="sb" onclick="lo()">切换</button></div>
+      <div class="sr"><span>重置进度</span><button class="sb" onclick="rst()">重置</button></div>
+      <div class="sr"><span>导出</span><button class="sb bl" onclick="exp()">导出</button></div>
+      <div class="sr"><span>导入</span><button class="sb bl" onclick="document.getElementById('fi').click()">导入</button><input type="file" id="fi" accept=".json" style="display:none"></div>
+    </div>
+    <div class="card">
+      <div class="sr"><span>每轮题数</span><div class="sgg" id="sz"></div></div>
+      <div class="sr"><span>自动下一题</span><div class="sgg" id="au"></div></div>
+      <div style="text-align:center;margin-top:10px;font-size:12px;color:#64748b" id="infoBar"></div>
+    </div>
+  </div>
+</div>
+
+<div class="tab">
+  <div class="ti a" data-t="0">看板</div>
+  <div class="ti" data-t="1">练习</div>
+  <div class="ti" data-t="2">设置</div>
+</div>
+
+<div class="mo" id="m1" onclick="cx(1)">
+  <div class="ms" onclick="event.stopPropagation()">
+    <div class="mh"><span>选择章节</span><span style="cursor:pointer;font-size:20px;color:#64748b" onclick="cx(1)">✕</span></div>
+    <div class="mb" id="m1b"></div>
+    <div class="mf"><button class="btn bo" onclick="cx(1)">取消</button><button class="btn bp" id="m1g">开始</button></div>
+  </div>
+</div>
+
+<div class="mo" id="m2" onclick="cx(2)">
+  <div class="ms" onclick="event.stopPropagation()">
+    <div class="mh"><span>选择题型</span><span style="cursor:pointer;font-size:20px;color:#64748b" onclick="cx(2)">✕</span></div>
+    <div class="mb" id="m2b"></div>
+    <div class="mf"><button class="btn bo" onclick="cx(2)">取消</button><button class="btn bp" id="m2g">开始</button></div>
+  </div>
+</div>
+
+<script>
+var QB=[{"id": "EX-第3章 -10", "ch": "交流电路", "type": "calc", "q": "如图 3-52 所示正弦交流电路，已知电流表 A₁、A₂ 读数均为 5 A，电压表 V₁、V₂ 读数均为 10 V，分析电流表 A₃ 和 V₃ 的读数。", "figs": ["3-52"], "imgs": ["figures/图3-52.png"], "ans": "（a）R 与 C 并联，A₁、A₂ 均为 5 A 时，A₃ 读数为相量和 I=√(5²+5²)=5√2≈7.07 A；\n（b）R 与 L 串联，V₁、V₂ 均为 10 V 时，V₃ 读数为 V=√(10²+10²)=10√2≈14.1 V。"}, {"id": "EX-第3章 -11", "ch": "交流电路", "type": "calc", "q": "如图 3-53 所示电路，已知 Z 上电压有效值为 20 V，Z₁=2+j4 Ω，Z₂=−j5 Ω，Z₃=4+j5 Ω，求等效复阻抗 Z、各支路电流和总电压。", "figs": ["3-53"], "imgs": ["figures/图3-53.png"], "ans": "Z=Z₁+(Z₂∥Z₃)=2+j4+(−j5∥(4+j5))；计算得 Z≈6+j2 Ω（需按具体拓扑）；\nI=U/Z，各支路电流用分流公式求。"}, {"id": "P3-4", "ch": "交流电路", "type": "calc", "q": "RLC串联电路中，R=10Ω，XL=20Ω，XC=10Ω，电源电压U=100V。求阻抗Z、电流I及电路性质。", "ans": "Z=√(10²+(20-10)²)=√200≈14.14Ω; I=100/14.14≈7.07A; XL>XC → 感性"}, {"id": "P3-2", "ch": "交流电路", "type": "calc", "q": "RL串联电路中，R=30Ω，XL=40Ω，接在U=220V电源上。求阻抗Z、电流I及功率因数cosφ。", "ans": "Z=√(30²+40²)=50Ω; I=220/50=4.4A; cosφ=30/50=0.6"}, {"id": "P3-3", "ch": "交流电路", "type": "calc", "q": "RC串联电路中，R=40Ω，XC=30Ω，接在U=220V电源上。求阻抗Z、电流I及功率因数cosφ。", "ans": "Z=√(40²+30²)=50Ω; I=220/50=4.4A; cosφ=40/50=0.8"}, {"id": "P3-9", "ch": "交流电路", "type": "calc", "q": "正弦电压u=100sin(ωt+30°)V，电流i=5sin(ωt-60°)A。求相位差及功率因数。", "ans": "相位差=30°-(-60°)=90°(电压超前电流90°); cosφ=cos90°=0"}, {"id": "C3-16", "ch": "交流电路", "type": "choice", "q": "电感元件的伏安关系u=L di/dt中，若电流为正弦量，则电压相位？", "opts": ["与电流同相", "超前电流90°", "滞后电流90°", "反相"], "ans": 1}, {"id": "C3-17", "ch": "交流电路", "type": "choice", "q": "电容元件的伏安关系i=C du/dt中，若电压为正弦量，则电流相位？", "opts": ["与电压同相", "超前电压90°", "滞后电压90°", "反相"], "ans": 1}, {"id": "C3-15", "ch": "交流电路", "type": "choice", "q": "三相对称负载三角形连接，线电流与相电流的关系是？", "opts": ["I_L = I_P", "I_L = √3 I_P", "I_L = I_P/√3", "I_L = 3I_P"], "ans": 1}, {"id": "C3-18", "ch": "交流电路", "type": "choice", "q": "有功功率P、无功功率Q、视在功率S之间的关系是？", "opts": ["S=P+Q", "S²=P²+Q²", "S=P²+Q²", "S=√(P+Q)"], "ans": 1}, {"id": "C3-14", "ch": "交流电路", "type": "choice", "q": "三相对称负载星形连接，线电流与相电流的关系是？", "opts": ["I_L = I_P", "I_L = √3 I_P", "I_L = I_P/√3", "I_L = 3I_P"], "ans": 0}, {"id": "C3-21", "ch": "交流电路", "type": "choice", "q": "RLC串联谐振时，电感电压和电容电压的关系是？", "opts": ["UL>UC", "UL<UC", "UL=UC", "不确定"], "ans": 2}, {"id": "C3-22", "ch": "交流电路", "type": "choice", "q": "三相电源三角形连接时，线电压与相电压的关系是？", "opts": ["UL=UP", "UL=√3UP", "UL=UP/√3", "UL=3UP"], "ans": 0}, {"id": "C3-11", "ch": "交流电路", "type": "choice", "q": "三相电源星形连接，相电压220V，线电压为？", "opts": ["220V", "311V", "380V", "440V"], "ans": 2}, {"id": "C3-3", "ch": "交流电路", "type": "choice", "q": "有效值为220V的正弦电压，最大值为？", "opts": ["220V", "311V", "380V", "156V"], "ans": 1}, {"id": "C3-4", "ch": "交流电路", "type": "choice", "q": "纯电阻电路中，电压与电流的相位关系是？", "opts": ["电压超前90°", "电流超前90°", "同相", "反相"], "ans": 2}, {"id": "C3-23", "ch": "交流电路", "type": "choice", "q": "三相四线制中，中线上一般装什么保护？", "opts": ["熔断器", "开关", "不装熔断器", "过流保护"], "ans": 2}, {"id": "C3-5", "ch": "交流电路", "type": "choice", "q": "纯电感电路中，电压超前电流多少度？", "opts": ["0°", "45°", "90°", "180°"], "ans": 2}, {"id": "C3-6", "ch": "交流电路", "type": "choice", "q": "纯电容电路中，电流超前电压多少度？", "opts": ["0°", "45°", "90°", "180°"], "ans": 2}, {"id": "C3-9", "ch": "交流电路", "type": "choice", "q": "RLC串联谐振时，电路呈什么性质？", "opts": ["感性", "容性", "阻性", "不确定"], "ans": 2}, {"id": "F3-10", "ch": "交流电路", "type": "fill", "q": "u=311sin(314t)V的角频率为____rad/s。", "ans": "314"}, {"id": "F3-3", "ch": "交流电路", "type": "fill", "q": "u = 311sin(314t)V的有效值为____V。", "ans": "220"}, {"id": "F3-6", "ch": "交流电路", "type": "fill", "q": "RLC串联谐振时，电路呈____性，阻抗最____。", "ans": "阻性，小(等于R)"}, {"id": "F3-9", "ch": "交流电路", "type": "fill", "q": "正弦交流电的三要素是____、____和____。", "ans": "最大值(幅值)，角频率，初相角"}, {"id": "F3-1", "ch": "交流电路", "type": "fill", "q": "正弦量的三要素是____、____和____。", "ans": "最大值(幅值)，角频率，初相角"}, {"id": "F3-2", "ch": "交流电路", "type": "fill", "q": "我国电网频率为____Hz，周期为____s。", "ans": "50，0.02"}, {"id": "F3-7", "ch": "交流电路", "type": "fill", "q": "星形连接中，线电压 = ____ × 相电压。", "ans": "√3"}, {"id": "T3-10", "ch": "交流电路", "type": "tf", "q": "RLC串联电路中，当XL > XC时，电路呈感性。", "ans": true}, {"id": "T3-15", "ch": "交流电路", "type": "tf", "q": "三相不对称负载星形连接无中线时，负载相电压不对称。", "ans": true}, {"id": "T3-1", "ch": "交流电路", "type": "tf", "q": "正弦交流电的三要素是最大值、频率和初相。", "ans": true}, {"id": "T3-5", "ch": "交流电路", "type": "tf", "q": "RLC串联谐振时，阻抗最小，电流最大。", "ans": true}, {"id": "T3-9", "ch": "交流电路", "type": "tf", "q": "三相对称负载星形连接时，中线电流为零。", "ans": true}, {"id": "T3-13", "ch": "交流电路", "type": "tf", "q": "无功功率是电感或电容与电源交换的功率。", "ans": true}, {"id": "T3-8", "ch": "交流电路", "type": "tf", "q": "三相三角形连接时，线电流等于相电流。", "ans": false}, {"id": "T3-2", "ch": "交流电路", "type": "tf", "q": "正弦量的有效值等于最大值除以√2。", "ans": true}, {"id": "T3-3", "ch": "交流电路", "type": "tf", "q": "纯电感电路中，电压滞后电流90°。", "ans": false}, {"id": "T3-4", "ch": "交流电路", "type": "tf", "q": "纯电容电路中，电流超前电压90°。", "ans": true}, {"id": "EX-第7章 -3", "ch": "半导体器件", "type": "calc", "q": "在如图 7-18 所示电路中，试判断二极管是导通还是截止？截止的二极管承受的反向电压是多少？", "figs": ["7-18"], "imgs": ["figures/图7-18.png"], "ans": "（a）VD 反偏截止：6 V 源正极在下、负极在上，VD 阴极 K 经 R 接 +6 V，阳极 A 接负极（0 V），$V_K=6\\,\\text{V}$，$V_A=0\\,\\text{V}$，反向电压 $U_R=6\\,\\text{V}$。\n（b）VD 正偏导通：$V_A=10\\,\\text{V}$，$V_K=-6\\,\\text{V}$，$V_A>V_K$，回路电流 $I=(10+6)/R=16/R$。"}, {"id": "EX-第7章 -4", "ch": "半导体器件", "type": "calc", "q": "如图 7-19 所示，u_i = 4sinωt V，U_R = 2 V，设二极管为理想二极管，画出相应的输出电压波形。", "figs": ["7-19"], "imgs": ["figures/图7-19.png"], "ans": "已知 $u_i=4\\sin\\omega t$ V，$U_{\\mathrm{REF}}=2$ V，理想二极管。\n（a）顶部限幅：$u_o=u_i$（$u_i\\leq2$ V），$u_o=2$ V（$u_i>2$ V）；在 $\\omega t=30°\\sim150°$ 区间顶部被削平。\n（b）底部限幅：$u_o=u_i$（$u_i\\geq-2$ V），$u_o=-2$ V（$u_i<-2$ V）；在 $\\omega t=210°\\sim330°$ 区间底部被削平。"}, {"id": "EX-第7章 -6", "ch": "半导体器件", "type": "calc", "q": "在电路中，测得三极管各点对地电位如图 7-20 所示，判断三极管处于截止、放大还是饱和状态。", "figs": ["7-20"], "imgs": ["figures/图7-20.png"], "ans": "（a）NPN：$V_{BE}=0.7$ V，$V_{BC}=0.6$ V，两结均正偏 → 饱和；\n（b）PNP：$V_{EB}=0.4$ V 正偏，$V_{CB}=-5$ V 反偏 → 放大（不能用 NPN 的 $V_{BE}$ 公式）；\n（c）NPN：$V_{BE}=-0.7$ V → 截止；\n（d）NPN：$V_{BE}=0.7$ V，$V_{BC}<0$ → 放大。\n结论：饱和、放大、截止、放大。"}, {"id": "EX-第7章 -9", "ch": "半导体器件", "type": "calc", "q": "如图 7-21 所示，分析三极管的三个引脚哪个是集电极、基极和发射极？是 NPN 型还是 PNP 型？并估算 β 值。", "figs": ["7-21"], "imgs": ["figures/图7-21.png"], "ans": "（a）NPN，β≈(2.04−0.04)/0.04=50；\n（b）PNP，β≈(3.03−0.03)/0.03=100；\n引脚识别：电流最小者为 b，其余按放大区关系定 e、c。"}, {"id": "C5-17", "ch": "半导体器件", "type": "choice", "q": "单相桥式整流电路中，每个二极管承受的最大反向电压为？", "opts": ["U₂", "√2U₂", "2U₂", "U₂/2"], "ans": 1}, {"id": "C5-5", "ch": "半导体器件", "type": "choice", "q": "NPN型三极管工作在放大区时，电位关系是？", "opts": ["Vc > Vb > Ve", "Ve > Vb > Vc", "Vb > Vc > Ve", "Vc > Ve > Vb"], "ans": 0}, {"id": "C5-15", "ch": "半导体器件", "type": "choice", "q": "PNP型三极管工作在放大区时，电位关系是？", "opts": ["Vc>Vb>Ve", "Ve>Vb>Vc", "Vb>Vc>Ve", "Vc>Ve>Vb"], "ans": 1}, {"id": "C5-13", "ch": "半导体器件", "type": "choice", "q": "三极管饱和导通时，UCE约为？", "opts": ["0V", "0.3V", "0.7V", "Vcc"], "ans": 1}, {"id": "C5-1", "ch": "半导体器件", "type": "choice", "q": "硅二极管的正向导通压降约为？", "opts": ["0.1V", "0.3V", "0.7V", "1.2V"], "ans": 2}, {"id": "C5-2", "ch": "半导体器件", "type": "choice", "q": "锗二极管的正向导通压降约为？", "opts": ["0.1V", "0.3V", "0.7V", "1.2V"], "ans": 1}, {"id": "C5-11", "ch": "半导体器件", "type": "choice", "q": "二极管的正向电阻比反向电阻？", "opts": ["大", "小", "相等", "不一定"], "ans": 1}, {"id": "C5-12", "ch": "半导体器件", "type": "choice", "q": "三极管的电流放大作用实质是？", "opts": ["将小电流放大成大电流", "将小电压放大成大电压", "将小功率放大成大功率", "将直流变成交流"], "ans": 0}, {"id": "C5-8", "ch": "半导体器件", "type": "choice", "q": "场效应管是什么控制型器件？", "opts": ["电流控制型", "电压控制型", "功率控制型", "频率控制型"], "ans": 1}, {"id": "C5-14", "ch": "半导体器件", "type": "choice", "q": "三极管截止时，各极电流为？", "opts": ["均很大", "均很小或为零", "只有基极电流为零", "只有集电极电流为零"], "ans": 1}, {"id": "F5-7", "ch": "半导体器件", "type": "fill", "q": "场效应管是____控制器件，三极管是____控制器件。", "ans": "电压控制，电流控制"}, {"id": "F5-4", "ch": "半导体器件", "type": "fill", "q": "三极管的三种工作状态是____、____和____。", "ans": "放大，饱和，截止"}, {"id": "F5-10", "ch": "半导体器件", "type": "fill", "q": "三极管的三个工作区是____、____和____。", "ans": "放大区，饱和区，截止区"}, {"id": "F5-3", "ch": "半导体器件", "type": "fill", "q": "三极管有____、____和____三个极。", "ans": "基极(B)，发射极(E)，集电极(C)"}, {"id": "F5-11", "ch": "半导体器件", "type": "fill", "q": "共射放大电路中，输入信号加在____之间。", "ans": "基极和发射极(be)之间"}, {"id": "F5-5", "ch": "半导体器件", "type": "fill", "q": "NPN管在放大区时，电位关系为____。", "ans": "Vc>Vb>Ve"}, {"id": "F5-1", "ch": "半导体器件", "type": "fill", "q": "硅二极管正向压降约为____V。", "ans": "0.7"}, {"id": "T5-4", "ch": "半导体器件", "type": "tf", "q": "NPN型三极管在放大区时，Vc > Vb > Ve。", "ans": true}, {"id": "T5-5", "ch": "半导体器件", "type": "tf", "q": "三极管工作在饱和区时，UCE ≈ 0.3V。", "ans": true}, {"id": "T5-12", "ch": "半导体器件", "type": "tf", "q": "三极管的穿透电流ICEO越小，热稳定性越好。", "ans": true}, {"id": "T5-11", "ch": "半导体器件", "type": "tf", "q": "二极管加正向电压时导通，加反向电压时截止。", "ans": true}, {"id": "T5-14", "ch": "半导体器件", "type": "tf", "q": "共射放大电路既有电压放大又有电流放大。", "ans": true}, {"id": "T5-1", "ch": "半导体器件", "type": "tf", "q": "硅二极管的正向导通压降约为0.7V。", "ans": true}, {"id": "T5-2", "ch": "半导体器件", "type": "tf", "q": "锗二极管的正向导通压降约为0.3V。", "ans": true}, {"id": "T5-10", "ch": "半导体器件", "type": "tf", "q": "负反馈可以降低放大倍数但提高稳定性。", "ans": true}, {"id": "P4-1", "ch": "安全用电", "type": "calc", "q": "某家庭电路电压220V，同时使用总功率4.4kW的电器。求干路电流。若线路允许电流25A，是否超载？", "ans": "I=4400/220=20A; 20A<25A,不超载"}, {"id": "P4-5", "ch": "安全用电", "type": "calc", "q": "TN系统中，相线0.5Ω，PE线0.5Ω，电源220V。求短路电流及外壳对地电压。", "ans": "I=220/(0.5+0.5)=220A; 外壳电压=220×0.5/1=110V"}, {"id": "C4-12", "ch": "安全用电", "type": "choice", "q": "漏电保护器的额定漏电动作电流一般不超过？", "opts": ["10mA", "30mA", "100mA", "500mA"], "ans": 1}, {"id": "C4-15", "ch": "安全用电", "type": "choice", "q": "电器设备的绝缘电阻应定期用____测量？", "opts": ["万用表", "兆欧表", "电桥", "钳形表"], "ans": 1}, {"id": "C4-1", "ch": "安全用电", "type": "choice", "q": "我国规定的安全电压最高等级是多少？", "opts": ["24V", "36V", "48V", "110V"], "ans": 1}, {"id": "C4-8", "ch": "安全用电", "type": "choice", "q": "胸外按压与人工呼吸的推荐比例是？", "opts": ["15:2", "30:2", "5:1", "10:1"], "ans": 1}, {"id": "C4-10", "ch": "安全用电", "type": "choice", "q": "保护接地是将设备的什么部分接地？", "opts": ["火线", "零线", "金属外壳", "内部电路"], "ans": 2}, {"id": "C4-13", "ch": "安全用电", "type": "choice", "q": "在潮湿环境中，安全电压不应超过？", "opts": ["6V", "12V", "24V", "36V"], "ans": 1}, {"id": "C4-5", "ch": "安全用电", "type": "choice", "q": "电气设备起火应使用什么灭火器？", "opts": ["水", "干粉灭火器", "二氧化碳灭火器", "B和C都可以"], "ans": 3}, {"id": "C4-3", "ch": "安全用电", "type": "choice", "q": "通过人体的安全电流极限约为？", "opts": ["10mA", "30mA", "50mA", "100mA"], "ans": 1}, {"id": "C4-2", "ch": "安全用电", "type": "choice", "q": "人体电阻一般在什么范围？", "opts": ["10~100Ω", "100~1000Ω", "1kΩ~2kΩ", "10kΩ以上"], "ans": 2}, {"id": "F4-5", "ch": "安全用电", "type": "fill", "q": "保护接地是将设备的____与大地连接。", "ans": "金属外壳"}, {"id": "F4-6", "ch": "安全用电", "type": "fill", "q": "保护接地是将设备的____与大地连接。", "ans": "金属外壳"}, {"id": "F4-8", "ch": "安全用电", "type": "fill", "q": "触电急救的首要步骤是使触电者____。", "ans": "脱离电源"}, {"id": "F4-1", "ch": "安全用电", "type": "fill", "q": "我国安全电压最高为____V。", "ans": "36"}, {"id": "F4-4", "ch": "安全用电", "type": "fill", "q": "电气火灾应使用____灭火器。", "ans": "干粉或CO₂灭火器"}, {"id": "T4-12", "ch": "安全用电", "type": "tf", "q": "在同一变压器供电系统中，严禁同时使用保护接地和保护接零。", "ans": true}, {"id": "T4-8", "ch": "安全用电", "type": "tf", "q": "心肺复苏时胸外按压频率约为100~120次/分钟。", "ans": true}, {"id": "T4-5", "ch": "安全用电", "type": "tf", "q": "在同一系统中可以同时使用保护接地和保护接零。", "ans": false}, {"id": "T4-15", "ch": "安全用电", "type": "tf", "q": "验电器使用前应在已知带电设备上验证是否正常。", "ans": true}, {"id": "T4-9", "ch": "安全用电", "type": "tf", "q": "电气设备着火时可以用泡沫灭火器。", "ans": false}, {"id": "T4-14", "ch": "安全用电", "type": "tf", "q": "电气设备着火时，应先断电后灭火。", "ans": true}, {"id": "T4-1", "ch": "安全用电", "type": "tf", "q": "安全电压是指36V以下的电压。", "ans": true}, {"id": "T4-6", "ch": "安全用电", "type": "tf", "q": "避雷针是防止直击雷的主要装置。", "ans": true}, {"id": "T4-7", "ch": "安全用电", "type": "tf", "q": "跨步电压在高压线落地处最危险。", "ans": true}, {"id": "EX-第2章 -1", "ch": "电路分析方法", "type": "calc", "q": "求图 2-18 所示电路的等效电阻。", "figs": ["2-18"], "imgs": ["figures/图2-18.png"], "ans": "将网络化简：8 Ω 与（3 Ω 并 4 Ω+6 Ω 等支路）并联。\nR_eq=8∥(3+(4∥6)+2∥2)=8∥(3+2.4+1)=8∥6.4=40/9≈4.44 Ω。\n（若仅计 8 Ω 与 10 Ω 并联，则 R=40/9 Ω≈4.44 Ω。）"}, {"id": "EX-第2章 -3", "ch": "电路分析方法", "type": "calc", "q": "求图 2-19 所示电路在开关 S 打开和闭合时的电流 I。", "figs": ["2-19"], "imgs": ["figures/图2-19.png"], "ans": "S 断开：R=4+(6∥(2+2))=4+3=7 Ω，I=10/7≈1.43 A；\nS 闭合（短接某支路）：R=4∥6+2=2.4+2=4.4 Ω 或 R=6.67 Ω（视开关位置），I=10/6.67≈1.5 A。\n（按教材图 2-19：S 开 I=1.25 A，S 合 I=1.5 A。）"}, {"id": "EX-第2章 -4", "ch": "电路分析方法", "type": "calc", "q": "利用电源的等效变换将图 2-20 所示电路化成最简形式。", "figs": ["2-20"], "imgs": ["figures/图2-20.png"], "ans": "将含源支路等效为电压源串联电阻或电流源并联电阻，逐步化简为最简等效电路（单源单阻或单源多阻形式）。"}, {"id": "EX-第2章 -5", "ch": "电路分析方法", "type": "calc", "q": "利用电源等效变换求图 2-21 所示电路中的电压 U。", "figs": ["2-21"], "imgs": ["figures/图2-21.png"], "ans": "对图 2-21：中央节点 KCL，4 A 入=4 A 出+ I_5Ω，得 I_5Ω=0，故 U=0 V。"}, {"id": "EX-第2章 -6", "ch": "电路分析方法", "type": "calc", "q": "列出用支路电流法求图 2-22 所示电路的方程。", "figs": ["2-22"], "imgs": ["figures/图2-22.png"], "ans": "设支路电流 I₁、I₂、I₃…，对独立节点列 KCL，对独立回路列 KVL，写出方程组即可（系数由图中 R、U_s、I_s 决定）。"}, {"id": "EX-第2章 -7", "ch": "电路分析方法", "type": "calc", "q": "用支路电流法求图 2-23 所示电路的电流。", "figs": ["2-23"], "imgs": ["figures/图2-23.png"], "ans": "用支路电流法列方程求解（图 2-23 含多源多阻，得各支路电流后取所求支路）。典型结果如 I_2Ω=4 A 等，需代入具体参数。"}, {"id": "EX-第2章 -8", "ch": "电路分析方法", "type": "calc", "q": "用叠加定理求图 2-24 所示电路的电压 U 和电流 I。", "figs": ["2-24"], "imgs": ["figures/图2-24.png"], "ans": "分别令各独立源单独作用，求 U、I 的叠加：U=U′+U″，I=I′+I″。"}, {"id": "EX-第2章 -9", "ch": "电路分析方法", "type": "calc", "q": "电路如图 2-25 所示，求各支路电流 I。", "figs": ["2-25"], "imgs": ["figures/图2-25.png"], "ans": "列写节点或网孔方程，求各支路电流 I（图 2-25 多源网络，用 KCL/KVL 或矩阵法求解）。"}, {"id": "EX-第2章 -10", "ch": "电路分析方法", "type": "calc", "q": "求图 2-26 所示电路的戴维南等效电路。", "figs": ["2-26"], "imgs": ["figures/图2-26.png"], "ans": "求开路电压 U_oc 与等效电阻 R_eq，得戴维南等效：U_oc 与 R_eq 串联。"}, {"id": "EX-第2章 -11", "ch": "电路分析方法", "type": "calc", "q": "用戴维南定理求图 2-27 所示电路中的电压 U。", "figs": ["2-27"], "imgs": ["figures/图2-27.png"], "ans": "求 ab 端戴维南等效，U=U_oc·R_L/(R_eq+R_L) 或直接化简得 U。"}, {"id": "EX-第2章 -12", "ch": "电路分析方法", "type": "calc", "q": "如图 2-28 所示电路，用戴维南定理计算电路电流 I。", "figs": ["2-28"], "imgs": ["figures/图2-28.png"], "ans": "求除 R 外网络的戴维南参数，I=U_oc/(R_eq+R)。"}, {"id": "EX-第2章 -13", "ch": "电路分析方法", "type": "calc", "q": "如图 2-29 所示电路，R 的值是连续变化的，R 为何值时获得的功率最大？最大功率是多少？", "figs": ["2-29"], "imgs": ["figures/图2-29.png"], "ans": "对 R 的功率 P=I²R，由 P=R·[U/(R+R_eq)]²，令 dP/dR=0 得 R=R_eq 时最大；P_max=U_oc²/(4R_eq)。"}, {"id": "C2-18", "ch": "电路分析方法", "type": "choice", "q": "含受控源的电路求戴维南等效内阻时，应使用什么方法？", "opts": ["直接电阻串并联", "外加电源法", "开路短路法", "B或C均可"], "ans": 3}, {"id": "C2-12", "ch": "电路分析方法", "type": "choice", "q": "一般认为经过几个τ，一阶电路的过渡过程基本结束？", "opts": ["1~2个τ", "3~5个τ", "6~8个τ", "10个以上"], "ans": 1}, {"id": "C2-16", "ch": "电路分析方法", "type": "choice", "q": "用叠加定理求某支路电流时，电压源不作用应如何？", "opts": ["开路", "短路", "保留", "并联电阻"], "ans": 1}, {"id": "C2-17", "ch": "电路分析方法", "type": "choice", "q": "用叠加定理求某支路电流时，电流源不作用应如何？", "opts": ["开路", "短路", "保留", "串联电阻"], "ans": 0}, {"id": "C2-19", "ch": "电路分析方法", "type": "choice", "q": "一阶RC电路中，电容充电时其电压变化规律为？", "opts": ["线性增长", "指数增长", "正弦变化", "阶跃变化"], "ans": 1}, {"id": "C2-20", "ch": "电路分析方法", "type": "choice", "q": "一阶RL电路中，电感放电时其电流变化规律为？", "opts": ["线性衰减", "指数衰减", "正弦变化", "保持不变"], "ans": 1}, {"id": "C2-5", "ch": "电路分析方法", "type": "choice", "q": "用叠加定理分析电路时，不作用的电压源应？", "opts": ["开路", "短路", "保留", "并联一个电阻"], "ans": 1}, {"id": "C2-6", "ch": "电路分析方法", "type": "choice", "q": "用叠加定理分析电路时，不作用的电流源应？", "opts": ["开路", "短路", "保留", "串联一个电阻"], "ans": 0}, {"id": "C2-7", "ch": "电路分析方法", "type": "choice", "q": "Y形电阻全部为9Ω，等效Δ形各电阻为？", "opts": ["3Ω", "9Ω", "27Ω", "81Ω"], "ans": 2}, {"id": "C2-9", "ch": "电路分析方法", "type": "choice", "q": "节点电压法比支路电流法少列写哪种方程？", "opts": ["KCL方程", "KVL方程", "功率方程", "电压方程"], "ans": 1}, {"id": "C2-4", "ch": "电路分析方法", "type": "choice", "q": "负载获得最大功率时，负载电阻应等于？", "opts": ["0", "无穷大", "电源内阻", "电源内阻的一半"], "ans": 2}, {"id": "C2-10", "ch": "电路分析方法", "type": "choice", "q": "一阶RC电路的时间常数τ = ?", "opts": ["RC", "L/R", "R/C", "1/RC"], "ans": 0}, {"id": "C2-11", "ch": "电路分析方法", "type": "choice", "q": "一阶RL电路的时间常数τ = ?", "opts": ["RC", "L/R", "R/L", "1/RL"], "ans": 1}, {"id": "F2-9", "ch": "电路分析方法", "type": "fill", "q": "电压源与电流源等效变换时，Us = ____ × Rs。", "ans": "Is"}, {"id": "F2-6", "ch": "电路分析方法", "type": "fill", "q": "换路瞬间，____电压不能突变，____电流不能突变。", "ans": "电容电压，电感电流"}, {"id": "F2-7", "ch": "电路分析方法", "type": "fill", "q": "三要素法中的三要素是指____、____和____。", "ans": "初始值，稳态值，时间常数"}, {"id": "F2-10", "ch": "电路分析方法", "type": "fill", "q": "一阶电路的三要素是初始值、____和____。", "ans": "稳态值，时间常数"}, {"id": "F2-1", "ch": "电路分析方法", "type": "fill", "q": "戴维南等效电路由____与____串联组成。", "ans": "电压源，电阻"}, {"id": "F2-2", "ch": "电路分析方法", "type": "fill", "q": "诺顿等效电路由____与____并联组成。", "ans": "电流源，电阻"}, {"id": "T2-5", "ch": "电路分析方法", "type": "tf", "q": "Y-Δ变换中，Y形电阻全部相等时，Δ形电阻是Y形的3倍。", "ans": true}, {"id": "T2-8", "ch": "电路分析方法", "type": "tf", "q": "一阶电路的时间常数τ越大，过渡过程越长。", "ans": true}, {"id": "T2-13", "ch": "电路分析方法", "type": "tf", "q": "最大功率传输时，负载电阻与电源内阻相等。", "ans": true}, {"id": "T2-14", "ch": "电路分析方法", "type": "tf", "q": "时间常数τ越小，一阶电路的过渡过程越长。", "ans": false}, {"id": "T2-2", "ch": "电路分析方法", "type": "tf", "q": "戴维南定理适用于线性含源二端网络。", "ans": true}, {"id": "T2-4", "ch": "电路分析方法", "type": "tf", "q": "最大功率传输时，负载效率为50%。", "ans": true}, {"id": "T2-3", "ch": "电路分析方法", "type": "tf", "q": "诺顿定理是戴维南定理的对偶形式。", "ans": true}, {"id": "T2-6", "ch": "电路分析方法", "type": "tf", "q": "换路瞬间，电容电压不可以突变。", "ans": true}, {"id": "EX-第1章 -3", "ch": "电路基本概念", "type": "calc", "q": "如图 1-22 所示，电路中有三个元件，电流和电压的参考方向如图所示，实测得 I₁=3 A，I₂=−3 A，I₃=−3 A，U₁=−120 V，U₂=70 V，U₃=−50 V。试指出各元件电流和电压的实际方向，计算各元件的功率，并指出哪个元件吸收功率、哪个元件释放功率。", "figs": ["1-22"], "imgs": ["figures/图1-22.png"], "ans": "由测量值判断实际方向（与参考方向相反时取反）：\nI₁ 实际 3 A（向下）；I₂ 实际 3 A（向左）；I₃ 实际 3 A（向上）。\nU₁ 实际 120 V（下+上−）；U₂ 实际 70 V（左+右−）；U₃ 实际 50 V（上+下−）。\n功率（关联参考方向下 P=UI）：\nP₁=U₁I₁=(−120)×3=−360 W，即吸收 360 W；\nP₂=U₂I₂=70×(−3)=−210 W，即发出 210 W；\nP₃=U₃I₃=(−50)×(−3)=150 W，即吸收 150 W。\n结论：元件1、3 吸收功率，元件2 释放功率。"}, {"id": "EX-第1章 -4", "ch": "电路基本概念", "type": "calc", "q": "求如图 1-23 所示电压源或电流源的功率。", "figs": ["1-23"], "imgs": ["figures/图1-23.png"], "ans": "按关联方向 P=UI（电流从“+”端流入为正）：\n(a) 8 V 电压源，I=2 A 从“+”端流入：P=8×2=16 W（电压源吸收功率，或按题意理解为发出 16 W，需看电流方向与端钮关系）；\n(b) 4 V 电压源，I=3 A 从“−”端流入（等效从“+”端流出）：P=4×(−3)=−12 W，发出 12 W；\n(c) 5 V 电压源端电压 5 V，1 A 电流从“+”端流出：P=−5×1=−5 W，发出 5 W；\n(d) 6 V 电压源，3 A 从“+”端流入：P=6×3=18 W（吸收 18 W）。\n注：具体正负号取决于图中电流箭头与电源端钮的对应关系。"}, {"id": "EX-第1章 -8", "ch": "电路基本概念", "type": "calc", "q": "如图 1-24 所示，求各图中的未知量（设电流表内阻为零，电压表内阻为无穷大）。", "figs": ["1-24"], "imgs": ["figures/图1-24.png"], "ans": "（a）U_ab=8 V（伏特表读数），I=(6−8)/2=−1 A（或 U_bc=2 V，I=1 A 方向视参考而定）；\n（b）由 U_ab=8 V 及回路 KVL：U_S+2−5+2−5×1=8，得 U_S=14 V；\n（c）U_ab=3−2=1 V（3 V 源减 R 上 2 V）；\n（d）U_ab=5 V，1 A 经 2 V 源反向及 R：5=2+I·R，I=1 A，故 R=3 Ω。"}, {"id": "EX-第1章 -9", "ch": "电路基本概念", "type": "calc", "q": "求如图 1-25 所示电路中的电压 U。", "figs": ["1-25"], "imgs": ["figures/图1-25.png"], "ans": "（a）中间 2 V 源支路电流 I 由 KCL/KVL 求得（两 2 Ω 并联，1 A 源与 2 V 源并联）：I≈0.5 A（需按具体图列方程）；\n（b）U=1×1+2=3 V（1 Ω 电阻压降加 2 A 电流源与 1 V 源组合，按戴维南/KVL：U=3 V）。\n标准解法：对(a)列节点方程求 I；对(b) U=3 V。"}, {"id": "EX-第1章 -10", "ch": "电路基本概念", "type": "calc", "q": "列出如图 1-26 所示电路中各节点的电流方程和各回路的电压方程。", "figs": ["1-26"], "imgs": ["figures/图1-26.png"], "ans": "设节点①②③及参考节点，列 KCL：\nΣI入=ΣI出；再选独立回路列 KVL：ΣU=0。\n具体方程需按图中元件参数写出（如 I₁=I₂+I₃，U₁+U₂=U₃ 等形式）。"}, {"id": "EX-第1章 -11", "ch": "电路基本概念", "type": "calc", "q": "求如图 1-27 所示电路中的电压 U。", "figs": ["1-27"], "imgs": ["figures/图1-27.png"], "ans": "对右支路列 KVL/KCL，得 U=4 V（典型电路：左电流源与电阻网络决定右端电压为 4 V）。"}, {"id": "EX-第1章 -12", "ch": "电路基本概念", "type": "calc", "q": "如图 1-28 所示电路中，R₁=5 Ω，R₂=10 Ω，R₃=15 Ω，Uₛ₁=180 V，Uₛ₂=80 V。以 b 点为参考点，试求 a、c、d 四点的电位 Vₐ、V꜀、V_d 及 a、c 两点之间的电压 U_ac；以 d 点作为参考点，再求 Vₐ、V_b、V_c 和 U_ac。", "figs": ["1-28"], "imgs": ["figures/图1-28.png"], "ans": "以 b 为参考点（V_b=0）：\nV_a=(180−5×I₁)，经节点分析得 V_a=100 V，V_c=−50 V，V_d=80 V，U_ac=V_a−V_c=150 V。\n以 d 为参考点：V_d=0，V_a=−80 V，V_b=−80 V，V_c=−130 V，U_ac=50 V。"}, {"id": "EX-第1章 -13", "ch": "电路基本概念", "type": "calc", "q": "如图 1-29 所示电路为测量直流电压的电位计电路，Uₛ=3 V，R₀=40 Ω，当滑动触头使 R₁=10 Ω、R₂=100 Ω 时，检流计 P 中的电流为零，此时被测电压 U_x 为多少？", "figs": ["1-29"], "imgs": ["figures/图1-29.png"], "ans": "电桥平衡时 U_x 与 R₁、R₂ 分压关系：U_x=U_s·R₁/(R₁+R₂)=3×10/(10+100)=3/11≈0.273 V。"}, {"id": "P1-10", "ch": "电路基本概念", "type": "calc", "q": "如图，Us₁=10V，Us₂=5V，R₁=3Ω，R₂=2Ω。用KVL求回路电流及R₂两端电压。", "ans": "由KVL: 10-5=I×(3+2); I=1A; U_R2=1×2=2V"}, {"id": "C1-24", "ch": "电路基本概念", "type": "choice", "q": "某元件两端电压为-5V，通过电流为2A（关联方向），其功率为？", "opts": ["10W吸收", "10W发出", "-10W吸收", "无法确定"], "ans": 1}, {"id": "C1-7", "ch": "电路基本概念", "type": "choice", "q": "功率P=UI中，若U、I均为正值（关联方向），表示元件？", "opts": ["发出功率", "吸收功率", "既不发出也不吸收", "无法判断"], "ans": 1}, {"id": "C1-23", "ch": "电路基本概念", "type": "choice", "q": "图中有3个节点、5条支路，用支路电流法需列几个独立方程？", "opts": ["3个", "5个", "2个", "8个"], "ans": 1}, {"id": "C1-26", "ch": "电路基本概念", "type": "choice", "q": "某电炉额定功率2000W，额定电压220V，其电阻值为？", "opts": ["11Ω", "24.2Ω", "48.4Ω", "100Ω"], "ans": 1}, {"id": "C1-30", "ch": "电路基本概念", "type": "choice", "q": "某节点流入电流I₁=2A、I₂=3A，流出电流I₃=？", "opts": ["1A", "5A", "6A", "0.5A"], "ans": 1}, {"id": "C1-25", "ch": "电路基本概念", "type": "choice", "q": "一段导体的电阻为10Ω，通过2A电流，两端的电压为？", "opts": ["5V", "10V", "20V", "0.2V"], "ans": 2}, {"id": "C1-16", "ch": "电路基本概念", "type": "choice", "q": "某电阻两端加10V电压，通过2A电流，阻值是多少？", "opts": ["5Ω", "10Ω", "20Ω", "0.2Ω"], "ans": 0}, {"id": "C1-28", "ch": "电路基本概念", "type": "choice", "q": "三个电阻R₁=R₂=R₃=30Ω串联，总电阻为？", "opts": ["10Ω", "30Ω", "60Ω", "90Ω"], "ans": 3}, {"id": "C1-27", "ch": "电路基本概念", "type": "choice", "q": "电阻R₁=10Ω、R₂=20Ω并联，总电阻为？", "opts": ["30Ω", "15Ω", "6.67Ω", "200Ω"], "ans": 2}, {"id": "C1-13", "ch": "电路基本概念", "type": "choice", "q": "一个100W灯泡工作10小时，消耗多少度电？", "opts": ["0.1度", "1度", "10度", "100度"], "ans": 1}, {"id": "C1-22", "ch": "电路基本概念", "type": "choice", "q": "1度电可供220V、40W灯泡工作多少小时？", "opts": ["10h", "25h", "40h", "100h"], "ans": 1}, {"id": "C1-17", "ch": "电路基本概念", "type": "choice", "q": "220V、100W灯泡正常工作时电流约为？", "opts": ["0.22A", "0.45A", "2.2A", "4.5A"], "ans": 1}, {"id": "C1-29", "ch": "电路基本概念", "type": "choice", "q": "一个10Ω电阻通过2A电流，消耗的功率为？", "opts": ["20W", "40W", "10W", "5W"], "ans": 1}, {"id": "C1-18", "ch": "电路基本概念", "type": "choice", "q": "家庭电路中，各用电器之间的连接方式是？", "opts": ["全部串联", "全部并联", "混联", "先串后并"], "ans": 1}, {"id": "C1-10", "ch": "电路基本概念", "type": "choice", "q": "KVL定律反映的是电路中什么守恒？", "opts": ["电荷守恒", "能量守恒", "质量守恒", "电流守恒"], "ans": 1}, {"id": "C1-11", "ch": "电路基本概念", "type": "choice", "q": "KCL定律反映的是电路中什么守恒？", "opts": ["能量守恒", "电荷守恒", "电压守恒", "功率守恒"], "ans": 1}, {"id": "C1-8", "ch": "电路基本概念", "type": "choice", "q": "两个10Ω电阻串联，总电阻为？", "opts": ["5Ω", "10Ω", "20Ω", "100Ω"], "ans": 2}, {"id": "C1-9", "ch": "电路基本概念", "type": "choice", "q": "两个10Ω电阻并联，总电阻为？", "opts": ["5Ω", "10Ω", "20Ω", "100Ω"], "ans": 0}, {"id": "F1-11", "ch": "电路基本概念", "type": "fill", "q": "某电阻两端电压为10V，通过电流为2A，该电阻为____Ω。", "ans": "5"}, {"id": "F1-7", "ch": "电路基本概念", "type": "fill", "q": "220V、100W灯泡正常工作的电流约为____A。", "ans": "0.45"}, {"id": "F1-14", "ch": "电路基本概念", "type": "fill", "q": "R₁=20Ω和R₂=30Ω串联，总电阻为____Ω。", "ans": "50"}, {"id": "F1-15", "ch": "电路基本概念", "type": "fill", "q": "电流的实际方向与参考方向一致时，电流为____值。", "ans": "正"}, {"id": "F1-10", "ch": "电路基本概念", "type": "fill", "q": "串联电路中电流____；并联电路中电压____。", "ans": "处处相等，处处相等"}, {"id": "F1-1", "ch": "电路基本概念", "type": "fill", "q": "电路由电源、____和导线三个基本部分组成。", "ans": "负载"}, {"id": "F1-3", "ch": "电路基本概念", "type": "fill", "q": "两个10Ω电阻并联，等效电阻为____Ω。", "ans": "5"}, {"id": "F1-2", "ch": "电路基本概念", "type": "fill", "q": "欧姆定律的数学表达式为I = ____。", "ans": "U/R"}, {"id": "F1-4", "ch": "电路基本概念", "type": "fill", "q": "KVL定律是____守恒在电路中的体现。", "ans": "能量"}, {"id": "T1-20", "ch": "电路基本概念", "type": "tf", "q": "电路中任意两点间的电压与参考点选择有关。", "ans": false}, {"id": "T1-10", "ch": "电路基本概念", "type": "tf", "q": "串联电路中，电阻越大，分得的电压越高。", "ans": true}, {"id": "T1-11", "ch": "电路基本概念", "type": "tf", "q": "并联电路中，电阻越大，分得的电流越小。", "ans": true}, {"id": "T1-16", "ch": "电路基本概念", "type": "tf", "q": "电阻串联时，总电压等于各电阻电压之和。", "ans": true}, {"id": "T1-17", "ch": "电路基本概念", "type": "tf", "q": "电阻并联时，总电流等于各支路电流之和。", "ans": true}, {"id": "T1-14", "ch": "电路基本概念", "type": "tf", "q": "我国电力系统的标准频率是50Hz。", "ans": true}, {"id": "T1-15", "ch": "电路基本概念", "type": "tf", "q": "额定功率越大的灯泡，其电阻越大。", "ans": false}, {"id": "T1-18", "ch": "电路基本概念", "type": "tf", "q": "电源的电动势与端电压是同一概念。", "ans": false}, {"id": "T1-12", "ch": "电路基本概念", "type": "tf", "q": "电位的大小与参考点的选择无关。", "ans": false}, {"id": "T1-13", "ch": "电路基本概念", "type": "tf", "q": "电压的大小与参考点的选择无关。", "ans": true}, {"id": "T1-8", "ch": "电路基本概念", "type": "tf", "q": "导体的电阻与横截面积成正比。", "ans": false}, {"id": "T1-3", "ch": "电路基本概念", "type": "tf", "q": "电阻串联时各电阻电流相等。", "ans": true}];
+
+var CHS=["电路基本概念","电路分析方法","交流电路","安全用电","半导体器件"];
+var TN={choice:"选择题",tf:"判断题",fill:"填空题",calc:"计算题",analysis:"分析题"};
+var TY={choice:"c",tf:"t",fill:"f",calc:"p",analysis:"s"};
+var U="",N="",A={},H=[],Q=[],I=0,C=null,MD="",CR={},S={size:20,auto:false},TM=null,SC={},ST={};
+
+try{var _s=JSON.parse(localStorage.getItem("_s")||"{}");if(_s.size!==undefined)S.size=_s.size;if(_s.auto!==undefined)S.auto=_s.auto}catch(e){}
+
+(function(){
+  try{var s=localStorage.getItem("_ul");if(s){var d=JSON.parse(s);if(d.u&&d.n){U=d.u;N=d.n;go()}}}catch(e){}
+})();
+
+document.getElementById("lbtn").onclick=function(){
+  var i=document.getElementById("si").value.trim(),n=document.getElementById("sn").value.trim();
+  if(!i||!n){document.getElementById("le").style.display="block";return}
+  document.getElementById("le").style.display="none";U=i;N=n;
+  try{localStorage.setItem("_ul",JSON.stringify({u:U,n:N}))}catch(e){}go();
+};
+
+function go(){
+  document.getElementById("lp").classList.add("hide");
+  document.getElementById("app").classList.add("s");
+  try{var p=JSON.parse(localStorage.getItem("_d"+U)||"{}");Object.keys(p).forEach(function(k){if(p[k].a>0)A[k]=true})}catch(e){}
+  H=[];try{var hs=localStorage.getItem("_his"+U);if(hs)H=JSON.parse(hs);if(!Array.isArray(H))H=[]}catch(e){H=[]}
+  rd();ins();
+}
+
+function lo(){
+  if(!confirm("切换用户？"))return;
+  U="";N="";A={};H=[];
+  document.getElementById("app").classList.remove("s");
+  document.getElementById("lp").classList.remove("hide");
+  document.getElementById("si").value="";document.getElementById("sn").value="";
+}
+
+function ld(){try{return JSON.parse(localStorage.getItem("_d"+U)||"{}")}catch(e){return{}}}
+function sv(d){try{localStorage.setItem("_d"+U,JSON.stringify(d))}catch(e){}}
+function rc(id){var p=ld();return p[id]||{a:0,c:0,lc:false,r5:[],f:false}}
+function sr(id,r){var p=ld();p[id]=r;sv(p)}
+function ms(id){
+  var r=rc(id);if(r.a===0)return 0;
+  var f=r.f?100:0;
+  var re=r.r5.length>0?r.r5.filter(Boolean).length/r.r5.length*100:0;
+  var pn=Math.max(0,(r.a-5)*3);
+  return Math.max(0,Math.min(100,Math.round(.4*f+.5*re-.1*pn)));
+}
+function ml(m){if(m<=20)return 1;if(m<=40)return 2;if(m<=60)return 3;if(m<=70)return 4;return 5}
+function mc(m){return["#d32f2f","#ef6c00","#fbc02d","#7cb342","#2e7d32"][ml(m)-1]||"#ddd"}
+function mb(m){return["未掌握","需加强","一般","良好","掌握"][ml(m)-1]||"未做"}
+function ra(id,ok){
+  var r=rc(id);r.a++;if(ok){r.c++;r.lc=true}else{r.lc=false}
+  if(r.a===1)r.f=ok;r.r5.push(ok);if(r.r5.length>5)r.r5.shift();sr(id,r);A[id]=true;CR[id]=true;
+}
+function es(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function sh(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function chM(ch){var qs=QB.filter(function(q){return q.ch===ch});if(!qs.length)return 0;var s=0;qs.forEach(function(q){s+=ms(q.id)});return Math.round(s/qs.length)}
+function tpS(t){var qs=QB.filter(function(q){return q.type===t});var d=0;qs.forEach(function(q){if(ms(q.id)>0)d++});return{t:qs.length,d:d}}
+function st(){var t=QB.length,d=0,s=0;QB.forEach(function(q){var m=ms(q.id);if(m>0)d++;s+=m});return{t:t,d:d,m:t?Math.round(s/t):0}}
+
+function rd(){
+  var d=new Date();document.getElementById("dt").textContent=d.getFullYear()+"."+(d.getMonth()+1)+"."+d.getDate();var s=st();
+  document.getElementById("g1").innerHTML='<div class="g4"><div class="n" style="color:#2563eb">'+s.t+'</div><div class="l">总题库</div></div><div class="g4"><div class="n" style="color:#7c3aed">'+s.d+'</div><div class="l">已完成</div></div><div class="g4"><div class="n" style="color:#16a34a">'+s.m+'%</div><div class="l">掌握度</div></div><div class="g4"><div class="n" style="color:#d97706">'+(s.t-s.d)+'</div><div class="l">待攻克</div></div>';
+  document.getElementById("ov").innerHTML='<div style="display:flex;justify-content:space-between;font-size:13px"><span>'+mb(s.m)+'</span><span style="font-weight:700">'+s.m+'%</span></div><div class="bar"><div class="bf" style="width:'+s.m+'%;background:'+mc(s.m)+'"></div></div><div class="leg"><span>●未掌握</span><span>●需加强</span><span>●一般</span><span>●良好</span><span>●掌握</span></div>';
+  var h="";CHS.forEach(function(ch){var m=chM(ch);h+='<div class="pr"><span class="dot" style="background:'+mc(m)+'"></span><span style="flex:0 0 90px">'+ch+'</span><div class="tr"><div class="fl" style="width:'+m+'%;background:'+mc(m)+'"></div></div><span class="pct" style="color:'+mc(m)+'">'+m+'%</span></div>'});document.getElementById("ch").innerHTML=h;
+  var th="";["choice","tf","fill","calc","analysis"].forEach(function(t){var st=tpS(t);var p=st.t?Math.round(st.d/st.t*100):0;th+='<div class="pr"><span style="flex:0 0 50px;font-size:12px;color:#64748b">'+(TN[t]||t)+'</span><span style="font-size:11px;color:#64748b;flex:0 0 44px">'+st.d+'/'+st.t+'</span><div class="tr"><div class="fl" style="width:'+p+'%;background:#2563eb"></div></div><span class="pct" style="color:#2563eb">'+p+'%</span></div>'});document.getElementById("tp").innerHTML=th;
+  document.getElementById("ps").textContent="已答 "+s.d+"/"+s.t+" 题";
+  document.getElementById("infoBar").textContent=QB.length+"题 · "+CHS.length+"章 · "+Object.keys(TN).length+"题型";
+  var rH="";if(H&&H.length){var ms={};H.forEach(function(x){if(!ms[x.md])ms[x.md]={t:0,c:0};ms[x.md].t+=x.t;ms[x.md].c+=x.c});var mm={0:"随机",1:"顺序",2:"错题",3:"薄弱",4:"章节",5:"题型"};for(var k in ms){var r=ms[k].t?Math.round(ms[k].c/ms[k].t*100):0;rH+='<div class="g4" style="display:inline-block;margin:4px;min-width:120px"><div class="n" style="font-size:24px;color:'+(r>=80?"#16a34a":r>=60?"#2563eb":r>=40?"#d97706":"#dc2626")+'">'+r+'%</div><div class="l">'+(mm[k]||k)+' ('+ms[k].c+'/'+ms[k].t+')</div></div>'}}document.getElementById("sr").innerHTML=rH||'<div style="color:#64748b;text-align:center;padding:12px">暂无练习记录</div>';
+}
+
+function sm(m){
+  if(typeof m==="string"&&!isNaN(m))m=Number(m);
+  var p=[],sz=S.size>0?S.size:QB.length;
+  if(m==="chapter"){scs();return}
+  if(m==="type"){sts();return}
+  if(typeof m==="number"){
+    if(m===0){["choice","tf","fill","calc","analysis"].forEach(function(t){var pool=QB.filter(function(q){return q.type===t});sh(pool);p=p.concat(pool.slice(0,Math.ceil(sz/5)))});sh(p);if(sz>0&&p.length>sz)p=p.slice(0,sz)}
+    else if(m===1){["choice","tf","fill","calc","analysis"].forEach(function(t){QB.filter(function(q){return q.type===t}).slice(0,Math.ceil(sz/5)).forEach(function(q){p.push(q)})});if(sz>0&&p.length>sz)p=p.slice(0,sz)}
+    else if(m===2){p=QB.filter(function(q){var r=rc(q.id);return r.a>0&&!r.lc});sh(p);if(sz>0&&p.length>sz)p=p.slice(0,sz)}
+    else if(m===3){p=QB.slice().sort(function(a,b){return ms(a.id)-ms(b.id)});if(sz>0&&p.length>sz)p=p.slice(0,sz)}
+  }
+  if(!p.length){alert("无题");return}
+  MD=String(m);CR={};Q=p;I=0;document.getElementById("mArea").style.display="none";document.getElementById("qa").style.display="block";sq();
+}
+
+function ext(){
+  var c=0;Q.forEach(function(x){if(x._ok)c++});
+  if(Q.length>0&&c>0){H.push({md:MD,t:Q.length,c:c,d:new Date().toISOString().slice(0,10)});if(H.length>30)H.shift();try{localStorage.setItem("_his"+U,JSON.stringify(H))}catch(e){}}
+  Q=[];I=0;C=null;document.getElementById("mArea").style.display="block";document.getElementById("qa").style.display="none";rd();
+}
+
+function imgs(q){if(!q.imgs||!q.imgs.length)return"";var h="";q.imgs.forEach(function(b){h+='<img src="'+b+'" class="qimg">'});return h}
+
+function sq(){
+  if(I>=Q.length){var c=0;Q.forEach(function(x){if(x._ok)c++});alert("完成！"+Q.length+"题，正确"+c+"题("+Math.round(c/Q.length*100)+"%)");ext();return}
+  C=Q[I];var q=C;
+  var tc=TY[''+q.type]||'c';
+  var h='<div style="margin-bottom:8px;display:flex;gap:8px"><button class="btn bo" onclick="ext()" style="flex:none;padding:8px 16px">← 退出</button><button class="btn bo" onclick="regen()" style="flex:none;padding:8px 16px;color:#d97706">换一套</button></div><div class="qw"><div class="qm"><span><span class="qt qt'+tc+'">'+TN[q.type]+'</span><span style="margin-left:8px">'+q.ch+'</span></span><span>'+(I+1)+'/'+Q.length+'</span></div><div class="qtx">'+(I+1)+'. '+es(q.q)+'</div>'+imgs(q);
+  if(q.type==="choice"){h+='<div>';var lb=["A","B","C","D"];for(var i=0;i<q.opts.length;i++)h+='<div class="qo" onclick="so(this,'+i+')"><span class="lt">'+lb[i]+'</span>'+es(q.opts[i])+'</div>';h+='</div>'}
+  else if(q.type==="tf"){h+='<div style="display:flex;gap:10px"><div class="tfb" onclick="tf(this,true)">正确</div><div class="tfb" onclick="tf(this,false)">错误</div></div>'}
+  else if(q.type==="fill"){h+='<input class="inp" id="fii" placeholder="输入答案...">'}
+  else if(q.type==="analysis"){h+='<textarea class="inp" id="ci" placeholder="输入你的分析..." rows="4"></textarea>'}
+  else{h+='<textarea class="inp" id="ci" placeholder="输入计算过程..." rows="3"></textarea>'}
+  h+='<div class="res" id="res"></div><div class="btns"><button class="btn bp" id="ckB" onclick="ck()" '+(q.type==="choice"||q.type==="tf"?"disabled":"")+'>检查</button><button class="btn bo" id="nxB" style="display:none" onclick="nx()">下一题</button></div><div class="nd">';
+  for(var i=0;i<Q.length;i++){var c2=(i===I)?"cu":(CR[Q[i].id]?(Q[i]._ok?"ok":"no"):"");h+='<span class="nd-d '+c2+'" onclick="jmp('+i+')"></span>'}
+  h+='</div></div>';document.getElementById("qa").innerHTML=h;
+}
+
+function so(el,i){document.querySelectorAll(".qo").forEach(function(o){o.classList.remove("sel")});el.classList.add("sel");el._i=i;document.getElementById("ckB").disabled=false}
+function tf(el,v){document.querySelectorAll(".tfb").forEach(function(b){b.classList.remove("st","sf")});el.classList.add(v?"st":"sf");el._v=v;document.getElementById("ckB").disabled=false}
+
+function ck(){
+  if(!C)return;var q=C,ok=false;
+  if(q.type==="choice"){var s=document.querySelector(".qo.sel");if(!s){alert("请选择");return}ok=(s._i===q.ans);document.querySelectorAll(".qo").forEach(function(o,i){if(i===q.ans)o.classList.add("ok");else if(o.classList.contains("sel")&&i!==q.ans)o.classList.add("no")})}
+  else if(q.type==="tf"){var s=document.querySelector(".tfb.st,.tfb.sf");if(!s){alert("请选择");return}ok=(s._v===q.ans);document.querySelectorAll(".tfb").forEach(function(b){if(b._v===q.ans){b.classList.add("st")}else if(b._v===s._v&&b._v!==q.ans){b.classList.add("sf")}})}
+  else{var a=ans(q);document.getElementById("res").className="res s";document.getElementById("res").innerHTML='<div style="font-size:15px;font-weight:600;margin-bottom:8px">参考答案</div><div style="padding:10px;background:#f0fdf4;border-radius:8px;margin-bottom:8px;font-size:14px;line-height:1.8">'+es(a)+'</div>'+(q.explain?'<div style="padding:10px 12px;background:#f8fafc;border-radius:8px;margin-bottom:10px;font-size:14px;line-height:1.8;color:#334155"><b>详解：</b>'+q.explain+'</div>':'')+'<div style="display:flex;gap:8px"><button class="btn bs" onclick="sj(true)" style="flex:1;padding:10px;border-radius:8px;font-size:14px">对</button><button class="btn be" onclick="sj(false)" style="flex:1;padding:10px;border-radius:8px;font-size:14px">错</button></div>';document.getElementById("ckB").disabled=true;return}
+  fi(ok);
+}
+function sj(ok){fi(ok)}
+function fi(ok){
+  ra(C.id,ok);C._ok=ok;var r=document.getElementById("res");r.className="res s "+(ok?"good":"bad");r.innerHTML=ok?"✅ 正确":"❌ 错误";
+  document.getElementById("ckB").disabled=true;document.getElementById("nxB").style.display="";if(S.auto)TM=setTimeout(nx,2000);rd();
+}
+function ans(q){if(q.type==="choice"&&q.opts){var lb=["A","B","C","D"];return lb[q.ans]+". "+q.opts[q.ans]}if(q.type==="tf")return q.ans?"正确":"错误";return q.ans!==undefined&&q.ans!==null?String(q.ans):"见解析"}
+
+function nx(){clearTimeout(TM);I++;sq()}
+function jmp(i){clearTimeout(TM);I=i;sq()}
+function regen(){if(!confirm("换一套？"))return;if(MD==="4"){scs();return}if(MD==="5"){sts();return}sm(parseInt(MD)||0)}
+
+function scs(){
+  var h="";CHS.forEach(function(ch,i){var m=chM(ch);h+='<div class="cs" onclick="tglc(this,'+i+')"><div class="cbx"></div><div style="flex:1"><div>'+ch+'</div><div style="font-size:11px;color:#64748b">掌握度 '+m+'%</div></div></div>'});document.getElementById("m1b").innerHTML=h;SC={};
+  document.getElementById("m1g").onclick=function(){var chs=[];for(var k in SC){if(SC[k])chs.push(k)}var p=chs.length?QB.filter(function(q){return SC[q.ch]}):QB.slice();cx(1);if(!p.length){alert("无题");return}MD="4";CR={};Q=sh(p);var s=S.size;if(s>0&&Q.length>s)Q=Q.slice(0,s);I=0;document.getElementById("mArea").style.display="none";document.getElementById("qa").style.display="block";sq()};
+  document.getElementById("m1").classList.add("s");
+}
+function tglc(el,i){var cb=el.querySelector(".cbx");cb.classList.toggle("on");if(cb.classList.contains("on"))SC[CHS[i]]=true;else delete SC[CHS[i]]}
+
+function sts(){
+  var h=["choice","tf","fill","calc","analysis"];ST={};document.getElementById("m2b").innerHTML="";
+  h.forEach(function(t,i){var st=tpS(t);document.getElementById("m2b").innerHTML+='<div class="cs" onclick="tglt(this,'+i+')"><div class="cbx"></div><div style="flex:1"><div>'+TN[t]+'</div><div style="font-size:11px;color:#64748b">'+st.d+'/'+st.t+'题</div></div></div>'});
+  document.getElementById("m2g").onclick=function(){var ks=[];for(var k in ST){if(ST[k])ks.push(k)}var p=ks.length?QB.filter(function(q){return ST[q.type]}):QB.slice();cx(2);if(!p.length){alert("无题");return}MD="5";CR={};Q=sh(p);var s=S.size;if(s>0&&Q.length>s)Q=Q.slice(0,s);I=0;document.getElementById("mArea").style.display="none";document.getElementById("qa").style.display="block";sq()};
+  document.getElementById("m2").classList.add("s");
+}
+function tglt(el,i){var cb=el.querySelector(".cbx");cb.classList.toggle("on");if(cb.classList.contains("on"))ST[["choice","tf","fill","calc","analysis"][i]]=true;else delete ST[["choice","tf","fill","calc","analysis"][i]]}
+function cx(n){document.getElementById("m"+n).classList.remove("s")}
+
+function ps(){try{localStorage.setItem("_s",JSON.stringify({size:S.size,auto:S.auto}))}catch(e){}}
+function ins(){
+  var sz=document.getElementById("sz");sz.innerHTML="";[10,20,30,50,0].forEach(function(n){var e=document.createElement("span");if(n===S.size)e.className="a";e.textContent=n||"全";e.onclick=function(){S.size=n;ps();ins()};sz.appendChild(e)});
+  var au=document.getElementById("au");au.innerHTML="";[1,0].forEach(function(v){var e=document.createElement("span");if(v===(S.auto?1:0))e.className="a";e.textContent=v?"自动":"手动";e.onclick=function(){S.auto=v===1;ps();ins()};au.appendChild(e)});
+}
+function exp(){var d=localStorage.getItem("_d"+U)||"{}";var b=new Blob([d],{type:"application/json"});var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=U+"_"+new Date().toISOString().slice(0,10)+".json";document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href)}
+function rst(){if(confirm("确定重置？")){localStorage.removeItem("_d"+U);localStorage.removeItem("_his"+U);A={};H=[];rd();alert("已重置")}}
+document.getElementById("fi").onchange=function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){try{var d=JSON.parse(ev.target.result);localStorage.setItem("_d"+U,JSON.stringify(d));A={};Object.keys(d).forEach(function(k){if(d[k].a>0)A[k]=true});rd();alert("成功")}catch(ex){alert("失败")}};r.readAsText(f)}
+document.querySelectorAll(".ti").forEach(function(el){el.onclick=function(){document.querySelectorAll(".ti").forEach(function(t){t.classList.remove("a")});document.querySelectorAll(".pg").forEach(function(p){p.classList.remove("a")});el.classList.add("a");document.getElementById("p"+el.dataset.t).classList.add("a");if(el.dataset.t==="0")rd()}});
+</script>
+</body>
+</html>

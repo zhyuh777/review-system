@@ -13,7 +13,7 @@ with open(os.path.join(BASE, 'subjects.json'), encoding='utf-8') as f:
 sjson = json.dumps(subjects, ensure_ascii=False)
 html = html.replace('__SUBJECTS_DATA__', sjson)
 
-out = os.path.join(BASE, '..', '传感器单片机物联网复习系统.html')
+out = os.path.join(BASE, '传感器单片机物联网复习系统.html')
 with open(out, 'w', encoding='utf-8') as f:
     f.write(html)
 
