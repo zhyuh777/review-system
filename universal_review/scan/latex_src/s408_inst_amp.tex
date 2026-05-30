@@ -1,0 +1,24 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{ctex}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+    \draw (0,0) node[op amp](U1){};
+    \draw (0,-3) node[op amp, yscale=-1](U2){};
+    \draw (U1.-) to[short] ++(-1.5,0) to[V, l_=$V_{in-}$] ++(0,-2);
+    \draw (U2.+) to[short] ++(-1.5,0) to[V, l_=$V_{in+}$] ++(0,2.5);
+    \draw (U1.+) -- ++(-1.5,0);
+    \draw (U2.-) -- ++(-1.5,0);
+    \draw (U1.-) to[short] ++(1,0) coordinate(rg1);
+    \draw (U2.+) to[short] ++(1,0) coordinate(rg2);
+    \draw (rg1) to[R, l_=$R_g$] (rg2);
+    \draw (U1.out) to[short] ++(1,0) to[R, l_=$R_1$] ++(2,0) coordinate(j1);
+    \draw (U2.out) to[short] ++(1,0) to[R, l_=$R_1$] ++(2,0) coordinate(j2);
+    \draw (5,1.5) node[op amp](U3){};
+    \draw (j1) -- ++(0,2.5) -- (U3.-);
+    \draw (j2) -- ++(0,2) -- (U3.+);
+    \draw (U3.out) to[short] ++(1,0) node[right] {$V_{out}$};
+    \draw (U3.-) to[short] ++(0,-1) to[R, l_=$R_2$] ++(2,0) -- (U3.out);
+    \draw (U3.+) to[short] ++(0,-1) to[R, l_=$R_2$] ++(0,-1) node[ground]{};
+\end{circuitikz}
+\end{document}

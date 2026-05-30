@@ -1,0 +1,17 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{ctex}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+    \draw (0,1) to[R, l_=$R_1$] ++(2,0) coordinate(n1);
+    \draw (n1) to[R, l_=$R_2$] ++(2,0) coordinate(n2);
+    \draw (n1) to[C, l_=$C_1$] ++(0,-2) node[ground]{};
+    \draw (n2) to[C, l_=$C_2$] ++(0,-2) node[ground]{};
+    \draw (4,0.5) node[op amp](U1){};
+    \draw (n2) to[short] ++(1,0) coordinate(n3);
+    \draw (n3) -- ++(0,0.5) -- (U1.+);
+    \draw (U1.out) to[short] ++(1.5,0) node[right] {$V_{out}$};
+    \draw (U1.-) to[short] ++(0,-0.8) to[short] ++(-1,0) to[short] ++(0,-0.7) -- (U1.out);
+    \draw (0,1) node[left] {$V_{in}$};
+\end{circuitikz}
+\end{document}

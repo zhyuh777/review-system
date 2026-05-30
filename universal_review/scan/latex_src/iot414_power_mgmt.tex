@@ -1,0 +1,24 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{ctex}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+    \draw (0,0.5) to[battery1, l=3.7V] (0,2);
+    \draw (0.5,0) rectangle (2.5,2.5);
+    \draw (1.5,1.25) node {DC-DC}; \draw (1.5,0.2) node[font=\small] {TPS61023};
+    \draw (2.5,1.5) to[short] ++(0.7,0);
+    \draw (3.2,1.5) node[pmos, anchor=S](Q1){};
+    \draw (Q1.G) to[short] ++(-0.5,0);
+    \draw (4,0) rectangle (6,1.5); \draw (5,0.75) node {LDO 3.3V};
+    \draw (Q1.D) to[short] (4,0.75);
+    \draw (6,0.75) to[short] ++(0.8,0) node[right] {MCU};
+    \draw (4,1.8) rectangle (6,3.3); \draw (5,2.55) node {LDO 5.0V};
+    \draw (Q1.D) to[short] (4,2.55);
+    \draw (6,2.55) to[short] ++(0.8,0) node[right] {Sensor};
+    \draw (0.5,0) -- (6,0) node[ground]{};
+    \draw[dashed] (-0.3,-0.3) rectangle (3,3.6);
+    \draw (1.35,3.9) node[above, font=\small] {电源转换};
+    \draw[dashed] (3.7,-0.3) rectangle (7.2,3.6);
+    \draw (5.45,3.9) node[above, font=\small] {稳压输出};
+\end{circuitikz}
+\end{document}

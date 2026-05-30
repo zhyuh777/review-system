@@ -1,0 +1,20 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{ctex}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+    \draw (-1,1.5) node[ocirc]{} node[left] {$V_{in+}$};
+    \draw (-1,0.5) node[ocirc]{} node[left] {$V_{in-}$};
+    \draw (-1,1.5) -- (0,1.5); \draw (-1,0.5) -- (0,0.5);
+    \draw (0,0) rectangle (2,2); \draw (1,1) node {INA};
+    \draw[->] (2,1) -- (2.5,1);
+    \draw (2.5,0) rectangle (4.5,2); \draw (3.5,1) node {LPF};
+    \draw[->] (4.5,1) -- (5,1);
+    \draw (5,0) rectangle (7,2); \draw (6,1) node {Amp};
+    \draw (7,1) node[right] {$V_{out}$};
+    \draw (0,0) -- (7,0) node[ground]{};
+    \draw (1,2.3) node[above, font=\small] {差分输入};
+    \draw (3.5,2.3) node[above, font=\small] {低通滤波};
+    \draw (6,2.3) node[above, font=\small] {放大输出};
+\end{circuitikz}
+\end{document}

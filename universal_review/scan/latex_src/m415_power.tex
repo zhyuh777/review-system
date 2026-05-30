@@ -1,0 +1,22 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{ctex}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+    \draw (0,1.5) node[left] {9V DC};
+    \draw (0,1.5) to[D, l_=$D_1$] (2,1.5);
+    \draw (2,1.5) to[C, l_=$C_1$, l_=100$\mu$F] (2,0) node[ground]{};
+    \draw (2,1.5) to[short] ++(1.5,0);
+    \draw (3.5,0) rectangle (5.5,2); \draw (4.5,1) node {7805};
+    \draw (3.5,1.5) node[below] {Vin};
+    \draw (3.5,0.5) node[below] {GND};
+    \draw (5.5,1.5) node[below] {Vout};
+    \draw (5.5,1.5) to[short] ++(1,0);
+    \draw (6.5,1.5) to[C, l_=$C_2$, l_=10$\mu$F] (6.5,0) node[ground]{};
+    \draw (6.5,1.5) to[short] ++(1,0);
+    \draw (7.5,1.5) to[C, l_=$C_3$, l_=0.1$\mu$F] (7.5,0) node[ground]{};
+    \draw (7.5,1.5) to[short] ++(1.5,0) node[right] {5V};
+    \draw (9,1.5) to[R, l_=$R_4$] ++(0,1.5) to[led, l=LED$_1$] ++(0,1.5);
+    \draw (7.5,1.5) -- (8,4.5) -- (9,4.5);
+\end{circuitikz}
+\end{document}

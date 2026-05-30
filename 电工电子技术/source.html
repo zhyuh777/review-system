@@ -130,7 +130,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 
   <div class="pg" id="p1">
     <div class="hd"><div class="tt">练习中心</div><div class="info" id="ps"></div></div>
-    <div id="mArea"><div class="mg" id="mg"></div></div>
+    <div id="mArea"><div class="mg" id="mg">
+      <div class="mc" onclick="sm(0)"><span class="mi">🎲</span><div class="mn">随机练习</div><div class="md">所有题型混合抽题</div></div>
+      <div class="mc" onclick="sm(1)"><span class="mi">📋</span><div class="mn">顺序练习</div><div class="md">按类型顺序出题</div></div>
+      <div class="mc" onclick="scs()"><span class="mi">📂</span><div class="mn">章节练习</div><div class="md">选择章节专项练习</div></div>
+      <div class="mc" onclick="sts()"><span class="mi">🎯</span><div class="mn">题型专练</div><div class="md">选择题型集中训练</div></div>
+      <div class="mc" onclick="sm(2)"><span class="mi">🔄</span><div class="mn">错题重练</div><div class="md">只做之前答错的题</div></div>
+      <div class="mc" onclick="sm(3)"><span class="mi">🤖</span><div class="mn">薄弱推荐</div><div class="md">优先出掌握度低的题</div></div>
+    </div></div>
     <div id="qa" style="display:none"></div>
   </div>
 

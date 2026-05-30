@@ -1,0 +1,20 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{ctex}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+    \draw (0,0) node[op amp](U1){};
+    \draw (U1.-) to[V, l_=$V_{in}$] ++(0,-3);
+    \draw (U1.+) to[short] ++(-1,0) to[R, l_=$R_1$] ++(0,-1.5) node[ground]{};
+    \draw (U1.out) to[short] ++(1,0) coordinate(b);
+    \draw (b) node[npn](Q1){};
+    \draw (Q1.E) to[short] ++(0,-0.5) node[ground]{};
+    \draw (Q1.C) to[short] ++(0,1) coordinate(loop);
+    \draw (loop) to[D, l_=$D_1$] ++(0,1.5) node[above] {24V};
+    \draw (loop) to[R, l_=$R_L$] ++(2,0) node[ground]{};
+    \draw[<->] ($(loop)+(2.3,0.5)$) -- ++(0,-1) node[midway, right] {$V_{out}$};
+    \draw[->, red, thick] (0.5,2.5) -- (1.5,2.5) node[midway, above] {$I_{loop}$};
+    \draw[dashed] (-0.5,-1.5) rectangle (3,4);
+    \draw (1.25,4.3) node[above, font=\small] {变送器};
+\end{circuitikz}
+\end{document}

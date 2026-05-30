@@ -1,0 +1,25 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{ctex}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+    \draw (0,0) rectangle (3,3); \draw (1.5,1.5) node {MAX485};
+    \draw (0,0.5) to[short] ++(-0.5,0) node[left] {RO};
+    \draw (0,1.5) to[short] ++(-0.5,0) node[left] {RE};
+    \draw (0,2.5) to[short] ++(-0.5,0) node[left] {DE};
+    \draw (3,0.5) to[short] ++(0.5,0) node[right] {DI};
+    \draw (3,2) to[short] ++(0.5,0) node[right] {$\overline{\text{RE}}$};
+    \draw (3,1) to[short] ++(1,0) node[circ]{} node[above] {A};
+    \draw (3,2) to[short] ++(1,0) node[circ]{} node[above] {B};
+    \draw (4,1) to[R, l_=$R_1$] (4,0) node[ground]{};
+    \draw (4,2) to[R, l_=$R_2$] (4,3);
+    \draw (4,1) to[R, l_=$R_3$] ++(-1.5,0) node[ground]{};
+    \draw (4,2) to[R, l_=$R_4$] ++(-1.5,0) to[short] ++(0,1) node[above] {$V_{CC}$};
+    \draw (4,1) to[short] ++(0.8,0);
+    \draw (4.8,1) to[D*, l=TVS$_1$] (4.8,1.5) node[ground]{};
+    \draw (4,2) to[short] ++(0.8,0);
+    \draw (4.8,2) to[D*, l=TVS$_2$] (4.8,1.5);
+    \draw (4.8,1) to[short] ++(1.2,0) node[right] {A};
+    \draw (4.8,2) to[short] ++(1.2,0) node[right] {B};
+\end{circuitikz}
+\end{document}

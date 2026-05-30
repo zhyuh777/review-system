@@ -1,0 +1,16 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{ctex}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+    \draw (0,0) node[left] {XTAL1};
+    \draw (4,0) node[right] {XTAL2};
+    \draw (0,0) to[short] (1,0);
+    \draw (4,0) to[short] (3,0);
+    \draw (1,0) to[C, l_=$C_1$, l_=30pF] (1,-2);
+    \draw (3,0) to[C, l_=$C_2$, l_=30pF] (3,-2);
+    \draw (1,-2) -- (3,-2) node[ground]{};
+    \draw (1,0) -- (2,0.3) -- (2,-0.3) -- (3,0);
+    \draw (2,0.5) node[above, font=\small] {XTAL 12MHz};
+\end{circuitikz}
+\end{document}

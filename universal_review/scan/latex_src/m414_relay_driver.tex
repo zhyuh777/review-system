@@ -1,0 +1,18 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{ctex}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+    \draw (0,1.5) node[left] {I/O};
+    \draw (0,1.5) to[R, l_=$R_1$] (2,1.5);
+    \draw (2.5,1.5) -- (2.5,0.8);
+    \draw (2.8,0.8) node[npn](Q1){};
+    \draw (Q1.E) to[short] ++(0,-0.8) node[ground]{};
+    \draw (Q1.C) to[short] ++(0,1) coordinate(rl_top);
+    \draw (rl_top) -- ++(1.5,0) to[L, l_=$K_1$] ++(0,-1.8) node[ground]{};
+    \draw (rl_top) to[D, l_=$D_1$] ++(1.5,0);
+    \draw (1.5,2.8) node[above] {$V_{CC}=5V$};
+    \draw[dashed] (1.8,-1.2) rectangle (4.8,3.2);
+    \draw (3.3,3.4) node[above, font=\small] {继电器驱动};
+\end{circuitikz}
+\end{document}

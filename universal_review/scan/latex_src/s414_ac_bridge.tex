@@ -1,0 +1,21 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{ctex}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+    \draw (0,0) to[sV, l_=$U_i$] ++(0,2) coordinate(top);
+    \draw (top) to[short] ++(-2,0) coordinate(A);
+    \draw (A) to[generic, l_=$Z_1$] ++(0,-3) coordinate(C);
+    \draw (top) to[short] ++(2,0) coordinate(B);
+    \draw (B) to[generic, l_=$Z_2$] ++(0,-3) coordinate(D);
+    \draw (C) to[generic, l_=$Z_3$] ++(4,0) coordinate(C2);
+    \draw (D) to[generic, l_=$Z_4$] ++(2,0) coordinate(F);
+    \draw (C) -- (C2); \draw (D) -- (F);
+    \draw (C2) to[short] ++(1,0) node[ocirc]{};
+    \draw (F) to[short] ++(1,0) node[ocirc]{};
+    \draw[<->, red] ($(C2)+(1.2,0.2)$) -- ++(0,-0.4) node[midway, right] {$U_o$};
+    \draw (0,-1) node[ground]{};
+    \draw (A) node[above right] {A}; \draw (B) node[above left] {B};
+    \draw (C) node[below right] {C}; \draw (D) node[below left] {D};
+\end{circuitikz}
+\end{document}
