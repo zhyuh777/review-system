@@ -1902,7 +1902,8 @@
         "answer": "敏感栅是应变片的核心部分，将应变转换为电阻变化；基底起绝缘和支撑作用；引出线用于连接测量电路。",
         "explanation": "电阻应变片基于金属的应变效应工作，敏感栅材料通常为康铜或镍铬合金。",
         "type": "analysis",
-        "sub": 0
+        "sub": 0,
+        "image": "传感器单片机物联网/images/s401_strain_gauge.png"
       },
       {
         "id": 402,
@@ -1910,7 +1911,8 @@
         "answer": "热端感受被测温度，冷端作为参考温度。当两端存在温差时产生热电动势，与温差成正比。",
         "explanation": "塞贝克效应，热电动势大小取决于两种金属的材料特性和两端温度差。",
         "type": "analysis",
-        "sub": 0
+        "sub": 0,
+        "image": "传感器单片机物联网/images/s402_thermocouple.png"
       },
       {
         "id": 403,
@@ -1918,7 +1920,8 @@
         "answer": "电容公式为 C = εS/d，d 增大时电容量减小，d 减小时电容量增大。",
         "explanation": "电容式传感器灵敏度高、动态响应快，适用于微小位移和压力测量。",
         "type": "analysis",
-        "sub": 0
+        "sub": 0,
+        "image": "传感器单片机物联网/images/s403_capacitive.png"
       },
       {
         "id": 404,
@@ -1935,7 +1938,8 @@
         "answer": "VH = k·I·B/d，与 I 成正比、与 B 成正比、与 d 成反比。",
         "explanation": "霍尔传感器广泛用于位置检测、电流测量和转速测量等领域。",
         "type": "analysis",
-        "sub": 0
+        "sub": 0,
+        "image": "传感器单片机物联网/images/s405_hall.png"
       },
       {
         "id": 406,
@@ -3932,7 +3936,8 @@
         "answer": "单片机、晶振电路、复位电路、电源电路是构成最小系统的必要组件。晶振提供时钟信号、复位电路确保上电时系统正常启动。",
         "explanation": "51单片机最小系统是单片机正常工作的基本条件。晶振电路(12MHz+30pF电容)提供系统时钟，复位电路(RC组合10μF+10kΩ)确保系统可靠启动。",
         "type": "analysis",
-        "sub": 1
+        "sub": 1,
+        "image": "传感器单片机物联网/images/m401_min_sys.png"
       },
       {
         "id": 402,
@@ -3940,7 +3945,8 @@
         "answer": "共阴极数码管所有LED阴极共地，高电平点亮；共阳极所有LED阳极共VCC，低电平点亮。段选选择显示的字形，位选选择显示的位数。",
         "explanation": "数码管由8个LED段组成(a~g、dp)。段选是控制各段亮灭来显示数字，位选是多位数码管中选通某一位。动态扫描显示利用视觉暂留效应逐位快速扫描。",
         "type": "analysis",
-        "sub": 1
+        "sub": 1,
+        "image": "传感器单片机物联网/images/m402_led.png"
       },
       {
         "id": 403,
@@ -3948,7 +3954,8 @@
         "answer": "行扫描法：逐行输出低电平(其余行高电平)，读列线电平。某列被拉低则按键按下。组合行号和列号即可唯一确定按键。",
         "explanation": "矩阵键盘用8根I/O线管理16个按键，比独立按键节省I/O资源。识别按键需考虑去抖(通常10~20ms延时)和按键释放检测。",
         "type": "analysis",
-        "sub": 1
+        "sub": 1,
+        "image": "传感器单片机物联网/images/m403_keypad.png"
       },
       {
         "id": 404,
@@ -5961,7 +5968,8 @@
         "answer": "感知层采集数据、网络层传输数据、应用层处理展示数据。数据从感知层经网络层流向应用层。",
         "explanation": "物联网三层架构是最基本的参考模型：感知层(传感器/RFID/摄像头)、网络层(互联网/移动网络/WiFi)、应用层(数据分析和业务应用)。",
         "type": "analysis",
-        "sub": 2
+        "sub": 2,
+        "image": "传感器单片机物联网/images/iot401_3layer.png"
       },
       {
         "id": 402,
@@ -5969,7 +5977,8 @@
         "answer": "Publisher发布消息到Broker(topic)，Subscriber订阅感兴趣的topic，Broker负责消息路由和分发。三者解耦，无需直接通信。",
         "explanation": "MQTT采用发布/订阅模式实现设备间松耦合通信，结构灵活、扩展性好。Topic采用层级结构(/sensor/temp/room1)便于过滤。",
         "type": "analysis",
-        "sub": 2
+        "sub": 2,
+        "image": "传感器单片机物联网/images/iot402_mqtt.png"
       },
       {
         "id": 403,
@@ -5986,7 +5995,8 @@
         "answer": "各终端设备(灯、空调、门锁)通过ZigBee/WiFi/BLE连接网关，网关汇聚数据连接到云端，用户通过App经云端下发指令实现联动控制。",
         "explanation": "智能家居中网关是核心枢纽，负责协议转换(如ZigBee转WiFi)、设备管理和本地自动化策略执行。",
         "type": "analysis",
-        "sub": 2
+        "sub": 2,
+        "image": "传感器单片机物联网/images/iot404_smarthome.png"
       },
       {
         "id": 405,
@@ -5994,7 +6004,8 @@
         "answer": "网关完成协议转换(ZigBee/WiFi/BLE→以太网/4G)、数据汇聚、边缘计算和安全管理，实现异构设备统一接入云端。",
         "explanation": "物联网网关是解决设备碎片化的关键设备。通过协议适配、数据格式转换和安全认证，使不同通信协议的设备能够与云平台可靠通信。",
         "type": "analysis",
-        "sub": 2
+        "sub": 2,
+        "image": "传感器单片机物联网/images/iot405_gateway.png"
       },
       {
         "id": 406,
