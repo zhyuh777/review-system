@@ -1,0 +1,20 @@
+\documentclass[border=12pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{amsmath}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+
+\draw (0,0) to[V, l=8V] (0,3.5);
+\draw (0,3.5) -- (2.5,3.5);
+\draw (2.5,3.5) to[R, l=2$\Omega$] (2.5,2);
+\draw (2.5,2) to[R, l=3$\Omega$] (2.5,0);
+\draw (2.5,3.5) -- (5,3.5);
+\draw (5,3.5) to[R, l=2$\Omega$] (5,2);
+\draw (5,2) to[R, l=4$\Omega$] (5,0);
+\draw (2.5,2) -- (3.8,2);
+\draw (3.8,2) to[I, l_=4A] (5,2);
+\draw (0,0) -- (5,0);
+\draw[->,thick] (5,2.8) -- (5,2.2) node[midway,right] {$I$};
+
+\end{circuitikz}
+\end{document}

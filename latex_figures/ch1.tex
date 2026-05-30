@@ -1,0 +1,48 @@
+\documentclass[border=12pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{amsmath}
+\begin{document}
+
+% 图1-22: 单回路三元件
+\begin{circuitikz}[scale=1.2, transform shape]
+  \draw (0,0) to[generic, l_=$U_1$] (0,3);
+  \draw (0,3) to[generic, l_=$U_2$] (5,3);
+  \draw (5,3) to[generic, l_=$U_3$] (5,0);
+  \draw (0,0) -- (5,0);
+  \draw[->, thick] (0.8,1.2) -- (0.8,2.2) node[midway, right] {$I_1$};
+  \draw[->, thick] (1.5,3.4) -- (3.5,3.4) node[midway, above] {$I_2$};
+  \draw[->, thick] (4.2,2.2) -- (4.2,1.2) node[midway, left] {$I_3$};
+\end{circuitikz}
+
+\vspace{1cm}
+
+% 图1-23(a-d): 二端网络+源
+\begin{circuitikz}[scale=1.0, transform shape]
+  \draw (0,0) rectangle (2,2); \draw (1,1) node {N};
+  \draw (2,1) to[battery1, l_=$8$V] (4,1);
+  \draw[->, thick] (2.5,1.4) -- (3.5,1.4) node[midway, above] {$2$A};
+  \draw (1,2.5) node[font=\small] {(a)};
+\end{circuitikz}
+
+\begin{circuitikz}[scale=1.0, transform shape]
+  \draw (0,0) rectangle (2,2); \draw (1,1) node {N};
+  \draw (2,1) to[battery1, l_=$4$V] (4,1);
+  \draw[->, thick] (3.5,0.6) -- (2.5,0.6) node[midway, below] {$3$A};
+  \draw (1,2.5) node[font=\small] {(b)};
+\end{circuitikz}
+
+\begin{circuitikz}[scale=1.0, transform shape]
+  \draw (0,0) rectangle (2,2); \draw (1,1) node {N};
+  \draw (2,1) to[I, l_=$1$A] (4,1);
+  \draw[<->] (4.5,1.5) -- (4.5,0.5) node[midway, right] {$5$V};
+  \draw (1,2.5) node[font=\small] {(c)};
+\end{circuitikz}
+
+\begin{circuitikz}[scale=1.0, transform shape]
+  \draw (0,0) rectangle (2,2); \draw (1,1) node {N};
+  \draw (2,1) to[I, l_=$3$A] (4,1);
+  \draw[<->] (4.5,1.5) -- (4.5,0.5) node[midway, right] {$6$V};
+  \draw (1,2.5) node[font=\small] {(d)};
+\end{circuitikz}
+
+\end{document}

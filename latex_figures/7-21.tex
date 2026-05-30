@@ -1,0 +1,14 @@
+\documentclass[border=12pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{amsmath}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+\draw (0,0) node[pnp](Q){};\draw (Q.E) -- ++(-1.2,0) node[left] {2.04mA};\draw[->] ($(Q.E)+(-0.6,0)$) -- ++(-0.6,0);\draw (Q.B) -- ++(0.6,0) node[right] {0.04mA};\draw[->] ($(Q.B)+(0.3,0)$) -- ++(0.3,0);\draw (Q.C) -- ++(0.6,0) node[right] {2mA};\draw[->] ($(Q.C)+(0.3,0)$) -- ++(0.3,0);\draw (0.8,-1.2) node[font=\small] {(a)};
+\end{circuitikz}
+
+\vspace{0.8cm}
+
+\begin{circuitikz}[scale=1.2, transform shape]
+\draw (0,0) node[npn](Q){};\draw (Q.E) -- ++(-1.2,0) node[left] {3.03mA};\draw[->] ($(Q.E)+(-0.6,0)$) -- ++(-0.6,0);\draw (Q.B) -- ++(0.6,0) node[right] {0.03mA};\draw[->] ($(Q.B)+(0.3,0)$) -- ++(0.3,0);\draw (Q.C) -- ++(0.6,0) node[right] {3mA};\draw[->] ($(Q.C)+(0.3,0)$) -- ++(0.3,0);\draw (0.8,-1.2) node[font=\small] {(b)};
+\end{circuitikz}
+\end{document}

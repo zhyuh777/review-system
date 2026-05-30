@@ -1,0 +1,52 @@
+\documentclass[border=12pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{amsmath}
+\begin{document}
+% 图1-22: 单回路, 三个一般元件
+\begin{circuitikz}[scale=1.2, transform shape]
+  \draw (0,0) to[generic, v=$U_1$, l_=$U_1$] (0,3);
+  \draw (0,3) to[generic, v=$U_2$, l_=$U_2$] (5,3);
+  \draw (5,3) to[generic, v=$U_3$, l_=$U_3$] (5,0);
+  \draw (0,0) -- (5,0);
+  \draw[->, thick] (0.8,1.5) -- (0.8,2.3) node[midway, right] {$I_1$};
+  \draw[->, thick] (1.5,3.3) -- (3.5,3.3) node[midway, above] {$I_2$};
+  \draw[->, thick] (4.2,2.3) -- (4.2,1.5) node[midway, left] {$I_3$};
+\end{circuitikz}
+
+\vspace{1cm}
+
+% 图2-19: 桥式+开关 (用电池符号)
+\begin{circuitikz}[scale=1.2, transform shape]
+  \draw (0,0) to[battery1, l=$10$V] (0,3);
+  \draw (0,3) to[R, l=$4\Omega$] (3,3);
+  \draw (3,3) to[switch, l=$S$] (6,3);
+  \draw (6,3) to[R, l=$2\Omega$] (6,0);
+  \draw (3,0) to[R, l=$2\Omega$] (3,3);
+  \draw (3,3) to[R, l=$6\Omega$] (4.5,1.5);
+  \draw (4.5,1.5) to[R, l=$2\Omega$] (6,0);
+  \draw (0,0) -- (6,0);
+  \draw[->, thick] (1,1.5) -- (1,2.3) node[midway, right] {$I$};
+\end{circuitikz}
+
+\vspace{1cm}
+
+% 图7-18(a): 二极管电路 (用电池符号)
+\begin{circuitikz}[scale=1.2, transform shape]
+  \draw (0,0) to[R, l=$R$] (0,3);
+  \draw (0,3) to[D, l=$VD$] (3,3);
+  \draw (3,3) to[battery1, l=$6$V] (3,0);
+  \draw (3,0) -- (0,0);
+  \draw (1.5,3.5) node[font=\small] {(a)};
+\end{circuitikz}
+
+\vspace{1cm}
+
+% 图7-18(b): 二极管电路
+\begin{circuitikz}[scale=1.2, transform shape]
+  \draw (0,0) to[battery1, l=$10$V] (0,3);
+  \draw (0,3) to[D, l=$VD$] (3,3);
+  \draw (3,3) to[battery1, l=$6$V] (3,0);
+  \draw (3,0) to[R, l=$R$] (0,0);
+  \draw (1.5,3.5) node[font=\small] {(b)};
+\end{circuitikz}
+\end{document}

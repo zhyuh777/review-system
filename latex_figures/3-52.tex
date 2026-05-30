@@ -1,0 +1,14 @@
+\documentclass[border=12pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{amsmath}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+\draw (0,0) to[sV, l=$u$] (0,3);\draw (0,3) -- (3,3);\draw (3,3) to[R, l=$R$] (3,1);\draw (3,3) to[C, l=$C$] (3,1);\draw (3,1) -- (3,0); \draw (0,0) -- (5.5,0);\draw (4.5,3) circle(6pt) (4.5,3) node {$A$};\draw (1.5,3) circle(6pt) (1.5,3) node {$A$};\draw (4.5,0) circle(6pt) (4.5,0) node {$A$};\draw (2.5,3.5) node[font=\small] {(a)};
+\end{circuitikz}
+
+\vspace{0.8cm}
+
+\begin{circuitikz}[scale=1.2, transform shape]
+\draw (0,0) to[sV, l=$u$] (0,3);\draw (0,3) to[R, l=$R$] (3,3);\draw (3,3) to[L, l=$L$] (3,0);\draw (3,0) -- (0,0); \draw (3,3) -- (5.5,3);\draw (1.5,3) circle(6pt) (1.5,3) node {$V$};\draw (3,1.5) circle(6pt) (3,1.5) node {$V$};\draw (5,3) circle(6pt) (5,3) node {$V$};\draw (2.5,3.5) node[font=\small] {(b)};
+\end{circuitikz}
+\end{document}

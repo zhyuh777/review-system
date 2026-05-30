@@ -1,0 +1,26 @@
+\documentclass[border=12pt]{standalone}
+\usepackage[siunitx, european]{circuitikz}
+\usepackage{amsmath}
+\begin{document}
+\begin{circuitikz}[scale=1.2, transform shape]
+\draw (0,0) rectangle (2,2); \draw (1,1) node {N};\draw (2,1) to[V, l_=8V] (4,1); \draw (4,1) -- (4.5,1);\draw (0,1) -- (-0.5,1);\draw[->,thick] (2.5,1.4) -- (3.5,1.4) node[midway,above] {2A};\draw (1,2.5) node[font=\small] {(a)};
+\end{circuitikz}
+
+\vspace{0.8cm}
+
+\begin{circuitikz}[scale=1.2, transform shape]
+\draw (0,0) rectangle (2,2); \draw (1,1) node {N};\draw (2,1) to[V, l_=4V] (4,1); \draw (4,1) -- (4.5,1);\draw (0,1) -- (-0.5,1);\draw[->,thick] (3.5,0.6) -- (2.5,0.6) node[midway,below] {3A};\draw (1,2.5) node[font=\small] {(b)};
+\end{circuitikz}
+
+\vspace{0.8cm}
+
+\begin{circuitikz}[scale=1.2, transform shape]
+\draw (0,0) rectangle (2,2); \draw (1,1) node {N};\draw (2,1) to[I, l_=1A] (4,1); \draw (4,1) -- (4.5,1);\draw (0,1) -- (-0.5,1);\draw[<->] (4.5,1.5) -- (4.5,0.5) node[midway,right] {5V};\draw (1,2.5) node[font=\small] {(c)};
+\end{circuitikz}
+
+\vspace{0.8cm}
+
+\begin{circuitikz}[scale=1.2, transform shape]
+\draw (0,0) rectangle (2,2); \draw (1,1) node {N};\draw (2,1) to[I, l_=3A] (4,1); \draw (4,1) -- (4.5,1);\draw (0,1) -- (-0.5,1);\draw[<->] (4.5,1.5) -- (4.5,0.5) node[midway,right] {6V};\draw (1,2.5) node[font=\small] {(d)};
+\end{circuitikz}
+\end{document}
