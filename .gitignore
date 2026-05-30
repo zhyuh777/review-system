@@ -14,3 +14,4 @@ __pycache__/
 *.aux
 *.log
 *.pdf
+universal_review/scan/output/
