@@ -1,10 +1,16 @@
-.DS_Store
+# Python
 __pycache__/
-*.py
-circuit_question_bank.json
-exercise_answers.json
-extracted_questions/
-universal_review/config.js
-universal_review/data.js
-design_*
-debug_*
+*.pyc
+.venv/
+
+# macOS
+.DS_Store
+
+# 可选：生成的文件（不跟踪也行，方便直接打开用）
+# 电工电子技术刷题平台.html
+# 传感器单片机物联网复习系统.html
+
+# LaTeX 编译临时文件
+*.aux
+*.log
+*.pdf
