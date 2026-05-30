@@ -3,12 +3,12 @@
 \usepackage{amsmath}
 \begin{document}
 \begin{circuitikz}[scale=1.2, transform shape]
-\draw (0,0) to[V, l=1V] (0,2.5);\draw (0,2.5) to[R, l=3$\Omega$] (2.5,2.5);\draw (2.5,2.5) -- (3.5,2.5);\draw (3.5,2.5) to[R, l=6$\Omega$] (3.5,0);\draw (3.5,0) -- (0,0);\draw (2.5,0) to[V, l_=10V] (2.5,0);\draw (3.5,2.5) -- (5,2.5) node[ocirc]{};\draw (3.5,0) -- (5,0) node[ocirc]{};\draw (1.5,3.2) node[font=\small] {(a)};
+\draw (0,0) to[battery, l=1V] (0,2.5);\draw (0,2.5) to[R, l=3$\Omega$] (2.5,2.5);\draw (2.5,2.5) -- (3.5,2.5);\draw (3.5,2.5) to[R, l=6$\Omega$] (3.5,0);\draw (3.5,0) -- (0,0);\draw (2.5,0) to[battery, l_=10V] (2.5,0);\draw (3.5,2.5) -- (5,2.5) node[ocirc]{};\draw (3.5,0) -- (5,0) node[ocirc]{};\draw (1.5,3.2) node[font=\small] {(a)};
 \end{circuitikz}
 
 \vspace{0.8cm}
 
 \begin{circuitikz}[scale=1.2, transform shape]
-\draw (0,0) to[V, l=3V] (0,2.5);\draw (0,2.5) to[R, l=2$\Omega$] (2.5,2.5);\draw (2.5,2.5) to[I, l_=1A] (2.5,0);\draw (2.5,0) -- (0,0);\draw (2.5,2.5) -- (3.5,2.5) to[R, l=5$\Omega$] (3.5,0);\draw (3.5,0) -- (2.5,0);\draw (3.5,2.5) -- (5,2.5) node[ocirc]{};\draw (3.5,0) -- (5,0) node[ocirc]{};\draw (1.5,3.2) node[font=\small] {(b)};
+\draw (0,0) to[battery, l=3V] (0,2.5);\draw (0,2.5) to[R, l=2$\Omega$] (2.5,2.5);\draw (2.5,2.5) to[I, l_=1A] (2.5,0);\draw (2.5,0) -- (0,0);\draw (2.5,2.5) -- (3.5,2.5) to[R, l=5$\Omega$] (3.5,0);\draw (3.5,0) -- (2.5,0);\draw (3.5,2.5) -- (5,2.5) node[ocirc]{};\draw (3.5,0) -- (5,0) node[ocirc]{};\draw (1.5,3.2) node[font=\small] {(b)};
 \end{circuitikz}
 \end{document}

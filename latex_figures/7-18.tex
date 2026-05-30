@@ -3,12 +3,12 @@
 \usepackage{amsmath}
 \begin{document}
 \begin{circuitikz}[scale=1.2, transform shape]
-\draw (0,0) to[R, l=$R$] (0,3.5);\draw (0,3.5) to[D, l=$VD$] (3.5,3.5);\draw (3.5,3.5) to[V, l=6V] (3.5,0);\draw (3.5,0) -- (0,0);\draw (1.5,4.2) node[font=\small] {(a)};
+\draw (0,0) to[R, l=$R$] (0,3.5);\draw (0,3.5) to[D, l=$VD$] (3.5,3.5);\draw (3.5,3.5) to[battery, l=6V] (3.5,0);\draw (3.5,0) -- (0,0);\draw (1.5,4.2) node[font=\small] {(a)};
 \end{circuitikz}
 
 \vspace{0.8cm}
 
 \begin{circuitikz}[scale=1.2, transform shape]
-\draw (0,0) to[V, l=10V] (0,3.5);\draw (0,3.5) to[D, l=$VD$] (3.5,3.5);\draw (3.5,3.5) to[V, l=6V] (3.5,0);\draw (3.5,0) to[R, l=$R$] (0,0);\draw (1.5,4.2) node[font=\small] {(b)};
+\draw (0,0) to[battery, l=10V] (0,3.5);\draw (0,3.5) to[D, l=$VD$] (3.5,3.5);\draw (3.5,3.5) to[battery, l=6V] (3.5,0);\draw (3.5,0) to[R, l=$R$] (0,0);\draw (1.5,4.2) node[font=\small] {(b)};
 \end{circuitikz}
 \end{document}

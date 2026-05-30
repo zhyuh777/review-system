@@ -3,12 +3,12 @@
 \usepackage{amsmath}
 \begin{document}
 \begin{circuitikz}[scale=1.2, transform shape]
-\draw (-1,2) to[sV, l=$u_i$] (-1,4.5);\draw (-1,4.5) to[R, l=$R$] (2.5,4.5);\draw (2.5,4.5) -- (3.5,4.5);\draw (3.5,4.5) -- (3.5,3);\draw (3.5,3) to[D, l=$VD$] (3.5,1);\draw (3.5,1) to[V, l_=$U_{REF}$] (3.5,-0.5);\draw (2.5,0) -- (2.5,4.5); \draw (2.5,0) -- (4.5,0);\draw (-1,2) -- (4.5,2); \draw (4.5,2) -- (5.5,2) node[right] {$u_o$};\draw (1.5,5.2) node[font=\small] {(a)};
+\draw (-1,2) to[sV, l=$u_i$] (-1,4.5);\draw (-1,4.5) to[R, l=$R$] (2.5,4.5);\draw (2.5,4.5) -- (3.5,4.5);\draw (3.5,4.5) -- (3.5,3);\draw (3.5,3) to[D, l=$VD$] (3.5,1);\draw (3.5,1) to[battery, l_=$U_{REF}$] (3.5,-0.5);\draw (2.5,0) -- (2.5,4.5); \draw (2.5,0) -- (4.5,0);\draw (-1,2) -- (4.5,2); \draw (4.5,2) -- (5.5,2) node[right] {$u_o$};\draw (1.5,5.2) node[font=\small] {(a)};
 \end{circuitikz}
 
 \vspace{0.8cm}
 
 \begin{circuitikz}[scale=1.2, transform shape]
-\draw (-1,2) to[sV, l=$u_i$] (-1,4.5);\draw (-1,4.5) to[R, l=$R$] (2.5,4.5);\draw (2.5,4.5) -- (3.5,4.5);\draw (3.5,4.5) -- (3.5,3);\draw (3.5,3) to[D, l=$VD$] (3.5,5);\draw (3.5,5) to[V, l_=$U_{REF}$] (3.5,6.5);\draw (2.5,0) -- (2.5,4.5); \draw (2.5,0) -- (4.5,0);\draw (-1,2) -- (4.5,2); \draw (4.5,2) -- (5.5,2) node[right] {$u_o$};\draw (1.5,5.2) node[font=\small] {(b)};
+\draw (-1,2) to[sV, l=$u_i$] (-1,4.5);\draw (-1,4.5) to[R, l=$R$] (2.5,4.5);\draw (2.5,4.5) -- (3.5,4.5);\draw (3.5,4.5) -- (3.5,3);\draw (3.5,3) to[D, l=$VD$] (3.5,5);\draw (3.5,5) to[battery, l_=$U_{REF}$] (3.5,6.5);\draw (2.5,0) -- (2.5,4.5); \draw (2.5,0) -- (4.5,0);\draw (-1,2) -- (4.5,2); \draw (4.5,2) -- (5.5,2) node[right] {$u_o$};\draw (1.5,5.2) node[font=\small] {(b)};
 \end{circuitikz}
 \end{document}
