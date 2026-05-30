@@ -1,26 +1,47 @@
-\documentclass[border=12pt]{standalone}
-\usepackage[siunitx, european]{circuitikz}
-\usepackage{amsmath}
+\documentclass[border=12pt]{standalone}\usepackage[siunitx, european]{circuitikz}\usepackage{amsmath}
 \begin{document}
-\begin{circuitikz}[scale=1.2, transform shape]
-\draw (0,0) to[battery, l_=6V] (0,2.5);\draw (0,2.5) to[R, l_=2$\Omega$] (3,2.5);\draw (3,2.5) -- (3,0) -- (0,0);\draw[->,thick] (1,2.8) -- (2,2.8) node[midway,above] {$I$};\draw (0,-0.4) node {a} (3,-0.4) node {b};\draw[<->] (3.5,2.5) -- (3.5,0) node[midway,right] {8V};\draw (1.5,3.2) node[font=\small] {(a)};
+
+% (a) 6V(+接a侧) 2Ω R, 电流I(c→b), V(8V跨a-b, +接a,-接b)
+\begin{circuitikz}[scale=1.0,transform shape]
+  \draw (0,0) to[battery,l_=6V] (0,2.5);
+  \draw (0,2.5) to[R,l_=2$\Omega$] (3,2.5);
+  \draw (3,2.5) -- (3,0) -- (0,0);
+  \draw[->,thick] (1,2.8) -- (2,2.8) node[midway,above] {$I$};
+  \draw (0,-0.4) node {a} (3,-0.4) node {b};
+  \draw[<->] (3.5,2.5) -- (3.5,0) node[midway,right] {8V};
+  \draw (1.5,3.2) node[font=\small] {(a)};
+\end{circuitikz}
+% (b) 串链: U_S-2Ω-5V-2V-5Ω-A(1A), V(8V跨a-b)
+\begin{circuitikz}[scale=1.0,transform shape]
+  \draw (0,0) to[battery,l_=$U_S$] (0,2.5);
+  \draw (0,2.5) to[R,l_=2$\Omega$] (2.5,2.5);
+  \draw (2.5,2.5) to[battery,l_=5V] (2.5,0);
+  \draw (2.5,0) -- (5,0) to[battery,l_=2V] (5,2.5);
+  \draw (5,2.5) to[R,l_=5$\Omega$] (7.5,2.5);
+  \draw (7.5,2.5) -- (7.5,0) -- (0,0);
+  \draw (1.2,1.2) node[circle,draw,inner sep=1pt,fill=white] {a};
+  \draw (6.2,1.2) node[circle,draw,inner sep=1pt,fill=white] {b};
+  \draw[<->] (8,2.5) -- (8,0) node[midway,right] {8V};
+  \draw (3.5,3.2) node[font=\small] {(b)};
+\end{circuitikz}
+% (c) 3V(+接a) 串R, V(2V跨R, -接a,+接b)
+\begin{circuitikz}[scale=1.0,transform shape]
+  \draw (0,0) to[battery,l_=3V] (0,2.5);
+  \draw (0,2.5) to[R,l_=$R$] (3.5,2.5);
+  \draw (3.5,2.5) -- (3.5,0) -- (0,0);
+  \draw[<->] (4,2.5) -- (4,0) node[midway,right] {2V};
+  \draw (0,-0.4) node {a} (3.5,-0.4) node {b};
+  \draw (1.5,3.2) node[font=\small] {(c)};
+\end{circuitikz}
+% (d) A(1A) 2V(+在R侧) R, V(5V跨a-b)
+\begin{circuitikz}[scale=1.0,transform shape]
+  \draw (0,0) to[I,l_=1A] (0,2.5);
+  \draw (0,2.5) to[battery,l_=2V] (2.5,2.5);
+  \draw (2.5,2.5) to[R,l_=$R$] (5,2.5);
+  \draw (5,2.5) -- (5,0) -- (0,0);
+  \draw[<->] (5.5,2.5) -- (5.5,0) node[midway,right] {5V};
+  \draw (0,-0.4) node {a} (5,-0.4) node {b};
+  \draw (2.5,3.2) node[font=\small] {(d)};
 \end{circuitikz}
 
-\vspace{0.8cm}
-
-\begin{circuitikz}[scale=1.2, transform shape]
-\draw (0,0) to[battery, l_=$U_S$] (0,2.5);\draw (0,2.5) to[R, l_=2$\Omega$] (2.5,2.5);\draw (2.5,2.5) to[battery, l_=5V] (2.5,0);\draw (2.5,0) -- (5,0) to[battery, l_=2V] (5,2.5);\draw (5,2.5) to[R, l_=5$\Omega$] (7.5,2.5);\draw (7.5,2.5) -- (7.5,0) -- (0,0);\draw (1.2,1.2) node[circle,draw,inner sep=1pt,fill=white] {a};\draw (6.2,1.2) node[circle,draw,inner sep=1pt,fill=white] {b};\draw[<->] (8,2.5) -- (8,0) node[midway,right] {8V};\draw (3.5,3.2) node[font=\small] {(b)};
-\end{circuitikz}
-
-\vspace{0.8cm}
-
-\begin{circuitikz}[scale=1.2, transform shape]
-\draw (0,0) to[battery, l_=3V] (0,2.5);\draw (0,2.5) to[R, l_=$R$] (3.5,2.5);\draw (3.5,2.5) -- (3.5,0) -- (0,0);\draw[<->] (4,2.5) -- (4,0) node[midway,right] {2V};\draw (0,-0.4) node {a} (3.5,-0.4) node {b};\draw (1.5,3.2) node[font=\small] {(c)};
-\end{circuitikz}
-
-\vspace{0.8cm}
-
-\begin{circuitikz}[scale=1.2, transform shape]
-\draw (0,0) to[I, l_=1A] (0,2.5);\draw (0,2.5) to[battery, l_=2V] (2.5,2.5);\draw (2.5,2.5) to[R, l_=$R$] (5,2.5);\draw (5,2.5) -- (5,0) -- (0,0);\draw[<->] (5.5,2.5) -- (5.5,0) node[midway,right] {5V};\draw (0,-0.4) node {a} (5,-0.4) node {b};\draw (2.5,3.2) node[font=\small] {(d)};
-\end{circuitikz}
 \end{document}

@@ -1,16 +1,16 @@
-\documentclass[border=12pt]{standalone}
-\usepackage[siunitx, european]{circuitikz}
-\usepackage{amsmath}
+\documentclass[border=12pt]{standalone}\usepackage[siunitx, european]{circuitikz}\usepackage{amsmath}
 \begin{document}
-\begin{circuitikz}[scale=1.2, transform shape]
 
-\draw (0,0) to[generic] (0,3.5);
-\draw (0,3.5) to[generic] (5,3.5);
-\draw (5,3.5) to[generic] (5,0);
-\draw (0,0) -- (5,0);
-\draw[->,thick] (0.8,1.3) -- (0.8,2.5) node[midway,right] {$I_1$};
-\draw[->,thick] (1.5,3.8) -- (3.5,3.8) node[midway,above] {$I_2$};
-\draw[->,thick] (4.2,2.5) -- (4.2,1.3) node[midway,left] {$I_3$};
-
+% 单回路三元件: 左U₁(+上-下) 上U₂(-左+右) 右U₃(+上-下) 底导线
+% I₁↓, I₂→, I₃↓
+\begin{circuitikz}[scale=1.2,transform shape]
+  \draw (0,0) to[battery, l_=$U_1$] (0,3.5);
+  \draw (0,3.5) to[battery, l_=$U_2$] (5,3.5);
+  \draw (5,3.5) to[battery, l_=$U_3$] (5,0);
+  \draw (0,0) -- (5,0);
+  \draw[->,thick] (0.8,1.3) -- (0.8,2.5) node[midway,right] {$I_1$};
+  \draw[->,thick] (1.5,3.8) -- (3.5,3.8) node[midway,above] {$I_2$};
+  \draw[->,thick] (4.2,2.5) -- (4.2,1.3) node[midway,left] {$I_3$};
 \end{circuitikz}
+
 \end{document}

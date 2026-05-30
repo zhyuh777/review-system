@@ -1,21 +1,20 @@
-\documentclass[border=12pt]{standalone}
-\usepackage[siunitx, european]{circuitikz}
-\usepackage{amsmath}
+\documentclass[border=12pt]{standalone}\usepackage[siunitx, european]{circuitikz}\usepackage{amsmath}
 \begin{document}
-\begin{circuitikz}[scale=1.2, transform shape]
 
-\draw (0,0) -- (9,0);
-\draw (0,0) to[R, l=3$\Omega$] (0,3.5);
-\draw (2.5,0) to[I, l=4A] (2.5,3.5);
-\draw (5,0) to[battery, l=2V] (5,3.5);
-\draw (5,3.5) to[R, l=2$\Omega$] (5,2);
-\draw (5,2) to[R, l=3$\Omega$] (7,2);
-\draw (5,3.5) -- (7,3.5);
-\draw (7,3.5) to[R, l=3$\Omega$] (7,2);
-\draw (7,2) to[I, l_=4A] (7,0);
-\draw (9,0) to[R, l=5$\Omega$] (9,3.5);
-\draw[<->] (9.5,3.5) -- (9.5,0) node[midway,right] {$U$};
-\draw (7,3.5) -- (9,3.5);
-
+% 四竖支+底公共线: 3Ω 4A↑ 顶桥2V(+左)+2Ω 4A↓ 5Ω(U,+上)
+\begin{circuitikz}[scale=1.2,transform shape]
+  \draw (0,0) -- (9,0);
+  \draw (0,0) to[R,l=3$\Omega$] (0,3.5);
+  \draw (2.5,0) to[I,l=4A] (2.5,3.5);
+  \draw (5,0) to[battery,l=2V] (5,3.5);
+  \draw (5,3.5) to[R,l=2$\Omega$] (5,2);
+  \draw (5,2) to[R,l=3$\Omega$] (7,2);
+  \draw (5,3.5) -- (7,3.5);
+  \draw (7,3.5) to[R,l=3$\Omega$] (7,2);
+  \draw (7,2) to[I,l_=4A] (7,0);
+  \draw (9,0) to[R,l=5$\Omega$] (9,3.5);
+  \draw[<->] (9.5,3.5) -- (9.5,0) node[midway,right] {$U$};
+  \draw (7,3.5) -- (9,3.5);
 \end{circuitikz}
+
 \end{document}

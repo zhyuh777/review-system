@@ -1,17 +1,16 @@
-\documentclass[border=12pt]{standalone}
-\usepackage[siunitx, european]{circuitikz}
-\usepackage{amsmath}
+\documentclass[border=12pt]{standalone}\usepackage[siunitx, european]{circuitikz}\usepackage{amsmath}
 \begin{document}
-\begin{circuitikz}[scale=1.2, transform shape]
 
-\draw (0,0) to[battery, l=9V] (0,3.5);
-\draw (0,3.5) to[R, l=6$\Omega$] (0,0);
-\draw (2.5,0) to[R, l=3$\Omega$] (2.5,3.5);
-\draw (5,3.5) to[R, l=3$\Omega$] (5,2);
-\draw (5,2) to[I, l_=2A] (5,3.5);
-\draw (7.5,0) to[R, l=4$\Omega$] (7.5,3.5);
-\draw (0,3.5) -- (7.5,3.5); \draw (0,0) -- (7.5,0);
-\draw[->,thick] (7.5,2.8) -- (7.5,1) node[midway,right] {$I$};
-
+% 左9V(+上)串6Ω 中3Ω竖 顶A—B: 2A→∥3Ω 右4Ω,I↓
+\begin{circuitikz}[scale=1.2,transform shape]
+  \draw (0,0) to[battery,l=9V] (0,3.5);
+  \draw (0,3.5) to[R,l=6$\Omega$] (0,0);
+  \draw (2.5,0) to[R,l=3$\Omega$] (2.5,3.5);
+  \draw (5,3.5) to[R,l=3$\Omega$] (5,2);
+  \draw (5,2) to[I,l_=2A] (5,3.5);
+  \draw (7.5,0) to[R,l=4$\Omega$] (7.5,3.5);
+  \draw (0,3.5) -- (7.5,3.5); \draw (0,0) -- (7.5,0);
+  \draw[->,thick] (7.5,2.8) -- (7.5,1) node[midway,right] {$I$};
 \end{circuitikz}
+
 \end{document}

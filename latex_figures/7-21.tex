@@ -1,14 +1,27 @@
-\documentclass[border=12pt]{standalone}
-\usepackage[siunitx, european]{circuitikz}
-\usepackage{amsmath}
+\documentclass[border=12pt]{standalone}\usepackage[siunitx, european]{circuitikz}\usepackage{amsmath}
 \begin{document}
-\begin{circuitikz}[scale=1.2, transform shape]
-\draw (0,0) node[pnp](Q){};\draw (Q.E) -- ++(-1.2,0) node[left] {2.04mA};\draw[->] ($(Q.E)+(-0.6,0)$) -- ++(-0.6,0);\draw (Q.B) -- ++(0.6,0) node[right] {0.04mA};\draw[->] ($(Q.B)+(0.3,0)$) -- ++(0.3,0);\draw (Q.C) -- ++(0.6,0) node[right] {2mA};\draw[->] ($(Q.C)+(0.3,0)$) -- ++(0.3,0);\draw (0.8,-1.2) node[font=\small] {(a)};
+
+% (a) PNP: 左2.04mA流入 中0.04mA流出 右2mA流出
+\begin{circuitikz}[scale=1.0,transform shape]
+  \draw (0,0) node[pnp](Q){};
+  \draw (Q.E) -- ++(-1.2,0) node[left] {2.04mA};
+  \draw[->] ($(Q.E)+(-0.6,0)$) -- ++(-0.6,0);
+  \draw (Q.B) -- ++(0.6,0) node[right] {0.04mA};
+  \draw[->] ($(Q.B)+(0.3,0)$) -- ++(0.3,0);
+  \draw (Q.C) -- ++(0.6,0) node[right] {2mA};
+  \draw[->] ($(Q.C)+(0.3,0)$) -- ++(0.3,0);
+  \draw (0.8,-1.2) node[font=\small] {(a)};
+\end{circuitikz}
+% (b) NPN: 左3.03mA流出 中0.03mA流入 右3mA流入
+\begin{circuitikz}[scale=1.0,transform shape]
+  \draw (0,0) node[npn](Q){};
+  \draw (Q.E) -- ++(-1.2,0) node[left] {3.03mA};
+  \draw[->] ($(Q.E)+(-0.6,0)$) -- ++(-0.6,0);
+  \draw (Q.B) -- ++(0.6,0) node[right] {0.03mA};
+  \draw[->] ($(Q.B)+(0.3,0)$) -- ++(0.3,0);
+  \draw (Q.C) -- ++(0.6,0) node[right] {3mA};
+  \draw[->] ($(Q.C)+(0.3,0)$) -- ++(0.3,0);
+  \draw (0.8,-1.2) node[font=\small] {(b)};
 \end{circuitikz}
 
-\vspace{0.8cm}
-
-\begin{circuitikz}[scale=1.2, transform shape]
-\draw (0,0) node[npn](Q){};\draw (Q.E) -- ++(-1.2,0) node[left] {3.03mA};\draw[->] ($(Q.E)+(-0.6,0)$) -- ++(-0.6,0);\draw (Q.B) -- ++(0.6,0) node[right] {0.03mA};\draw[->] ($(Q.B)+(0.3,0)$) -- ++(0.3,0);\draw (Q.C) -- ++(0.6,0) node[right] {3mA};\draw[->] ($(Q.C)+(0.3,0)$) -- ++(0.3,0);\draw (0.8,-1.2) node[font=\small] {(b)};
-\end{circuitikz}
 \end{document}

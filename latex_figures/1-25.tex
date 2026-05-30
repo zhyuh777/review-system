@@ -1,14 +1,24 @@
-\documentclass[border=12pt]{standalone}
-\usepackage[siunitx, european]{circuitikz}
-\usepackage{amsmath}
+\documentclass[border=12pt]{standalone}\usepackage[siunitx, european]{circuitikz}\usepackage{amsmath}
 \begin{document}
-\begin{circuitikz}[scale=1.2, transform shape]
-\draw (0,0) to[I, l_=1A] (0,2.5);\draw (0,2.5) -- (2.5,2.5);\draw (2.5,2.5) to[battery, l_=2V] (2.5,0);\draw (2.5,0) -- (5,0) to[R, l_=2$\Omega$] (5,2.5);\draw (5,2.5) -- (0,2.5);\draw[->,thick] (2.5,2) -- (2.5,0.8) node[midway,left] {$I$};\draw (2.5,3.2) node[font=\small] {(a)};
+
+% (a) 三并支: 左1A↓ 中2V(+上) 右2Ω
+% I参考方向向上(经中支路)
+\begin{circuitikz}[scale=1.0,transform shape]
+  \draw (0,0) to[I,l_=1A] (0,2.5);
+  \draw (0,2.5) -- (2.5,2.5) to[battery,l_=2V] (2.5,0);
+  \draw (2.5,0) -- (5,0) to[R,l_=2$\Omega$] (5,2.5);
+  \draw (5,2.5) -- (0,2.5);
+  \draw[->,thick] (2.5,2) -- (2.5,0.8) node[midway,left] {$I$};
+  \draw (2.5,3.2) node[font=\small] {(a)};
+\end{circuitikz}
+% (b) 单回路: 左1V(+上)+2A↑+U(+上), 右1Ω
+\begin{circuitikz}[scale=1.0,transform shape]
+  \draw (0,0) to[battery,l_=1V] (0,2.5);
+  \draw (0,2.5) to[I,l_=2A] (2.5,2.5);
+  \draw (2.5,2.5) to[R,l_=1$\Omega$] (5,2.5);
+  \draw (5,2.5) -- (5,0) -- (0,0);
+  \draw[<->] (5.5,2.5) -- (5.5,0) node[midway,right] {$U$};
+  \draw (2.5,3.2) node[font=\small] {(b)};
 \end{circuitikz}
 
-\vspace{0.8cm}
-
-\begin{circuitikz}[scale=1.2, transform shape]
-\draw (0,0) to[battery, l_=1V] (0,2.5);\draw (0,2.5) to[I, l_=2A] (2.5,2.5);\draw (2.5,2.5) to[R, l_=1$\Omega$] (5,2.5);\draw (5,2.5) -- (5,0) -- (0,0);\draw[<->] (5.5,2.5) -- (5.5,0) node[midway,right] {$U$};\draw (2.5,3.2) node[font=\small] {(b)};
-\end{circuitikz}
 \end{document}

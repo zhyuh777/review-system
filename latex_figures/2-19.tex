@@ -1,18 +1,17 @@
-\documentclass[border=12pt]{standalone}
-\usepackage[siunitx, european]{circuitikz}
-\usepackage{amsmath}
+\documentclass[border=12pt]{standalone}\usepackage[siunitx, european]{circuitikz}\usepackage{amsmath}
 \begin{document}
-\begin{circuitikz}[scale=1.2, transform shape]
 
-\draw (0,0) to[battery, l=10V] (0,3.5);
-\draw (0,3.5) to[R, l=4$\Omega$] (3,3.5);
-\draw (3,3.5) to[switch, l=$S$] (6,3.5);
-\draw (6,3.5) to[R, l=2$\Omega$] (6,0);
-\draw (3,0) to[R, l=2$\Omega$] (3,3.5);
-\draw (3,3.5) to[R, l=6$\Omega$] (4.5,1.8);
-\draw (4.5,1.8) to[R, l=2$\Omega$] (6,0);
-\draw (0,0) -- (6,0);
-\draw[->,thick] (1,1.5) -- (1,2.5) node[midway,right] {$I$};
-
+% 10V桥+开关S: 10V(+上) 4Ω(顶横) 2Ω(底横) 6Ω(对角线左上→右下) 2Ω(对角线左下→右上) S(右竖)
+\begin{circuitikz}[scale=1.2,transform shape]
+  \draw (0,0) to[battery,l=10V] (0,3.5);
+  \draw (0,3.5) to[R,l=4$\Omega$] (3,3.5);
+  \draw (3,3.5) to[switch,l=$S$] (6,3.5);
+  \draw (6,3.5) to[R,l=2$\Omega$] (6,0);
+  \draw (3,0) to[R,l=2$\Omega$] (3,3.5);
+  \draw (3,3.5) to[R,l=6$\Omega$] (4.5,1.8);
+  \draw (4.5,1.8) to[R,l=2$\Omega$] (6,0);
+  \draw (0,0) -- (6,0);
+  \draw[->,thick] (1,1.5) -- (1,2.5) node[midway,right] {$I$};
 \end{circuitikz}
+
 \end{document}

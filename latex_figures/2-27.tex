@@ -1,21 +1,21 @@
-\documentclass[border=12pt]{standalone}
-\usepackage[siunitx, european]{circuitikz}
-\usepackage{amsmath}
+\documentclass[border=12pt]{standalone}\usepackage[siunitx, european]{circuitikz}\usepackage{amsmath}
 \begin{document}
-\begin{circuitikz}[scale=1.2, transform shape]
 
-\draw (0,0) to[R, l=3$\Omega$] (0,3.5);
-\draw (0,3.5) to[battery, l_=5V] (0,3.5);
-\draw (0,3.5) -- (2,3.5) node[circ]{} node[above] {A};
-\draw (2,3.5) to[R, l=5$\Omega$] (4.5,3.5) node[circ]{} node[above] {C};
-\draw (4.5,3.5) to[R, l=3$\Omega$] (7,3.5) node[circ]{} node[above] {B};
-\draw (4.5,3.5) to[I, l_=3A] (4.5,5);
-\draw (4.5,5) -- (7,5);
-\draw (7,5) to[R, l=2$\Omega$] (7,3.5);
-\draw (2.5,0) to[battery, l=14V] (2.5,3.5);
-\draw (7,0) to[R, l=2$\Omega$] (7,3.5);
-\draw[<->] (7.5,3.5) -- (7.5,0) node[midway,right] {$U$};
-\draw (0,0) -- (7,0);
-
+% 三竖支: 左3Ω串5V(+上) 中14V(+上) 右2Ω(U,+上)
+% 顶网络: A—5Ω—C—3Ω—B  3A源(B→A,向左)
+\begin{circuitikz}[scale=1.2,transform shape]
+  \draw (0,0) to[R,l=3$\Omega$] (0,3.5);
+  \draw (0,3.5) to[battery,l_=5V] (0,3.5);
+  \draw (0,3.5) -- (2,3.5) node[circ]{} node[above] {A};
+  \draw (2,3.5) to[R,l=5$\Omega$] (4.5,3.5) node[circ]{} node[above] {C};
+  \draw (4.5,3.5) to[R,l=3$\Omega$] (7,3.5) node[circ]{} node[above] {B};
+  \draw (4.5,3.5) to[I,l_=3A] (4.5,5);
+  \draw (4.5,5) -- (7,5);
+  \draw (7,5) to[R,l=2$\Omega$] (7,3.5);
+  \draw (2.5,0) to[battery,l=14V] (2.5,3.5);
+  \draw (7,0) to[R,l=2$\Omega$] (7,3.5);
+  \draw[<->] (7.5,3.5) -- (7.5,0) node[midway,right] {$U$};
+  \draw (0,0) -- (7,0);
 \end{circuitikz}
+
 \end{document}

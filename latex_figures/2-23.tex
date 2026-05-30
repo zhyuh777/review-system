@@ -1,16 +1,15 @@
-\documentclass[border=12pt]{standalone}
-\usepackage[siunitx, european]{circuitikz}
-\usepackage{amsmath}
+\documentclass[border=12pt]{standalone}\usepackage[siunitx, european]{circuitikz}\usepackage{amsmath}
 \begin{document}
-\begin{circuitikz}[scale=1.2, transform shape]
 
-\draw (0,0) to[battery, l=13V] (0,3.5);
-\draw (0,3.5) to[R, l=3$\Omega$] (0,0);
-\draw (2.5,0) to[I, l=4A] (2.5,3.5);
-\draw (5,0) to[R, l=2$\Omega$] (5,3.5);
-\draw (0,3.5) -- (5,3.5); \draw (0,0) -- (5,0);
-\draw[->,thick] (0.8,1.5) -- (0.8,2.5) node[midway,right] {$I_1$};
-\draw[->,thick] (4.2,2.5) -- (4.2,1.5) node[midway,left] {$I_2$};
-
+% 三并支(共顶共底): 左13V串3Ω I₁↑ 中4A↑ 右2Ω I₂↓
+\begin{circuitikz}[scale=1.2,transform shape]
+  \draw (0,0) to[battery,l=13V] (0,3.5);
+  \draw (0,3.5) to[R,l=3$\Omega$] (0,0);
+  \draw (2.5,0) to[I,l=4A] (2.5,3.5);
+  \draw (5,0) to[R,l=2$\Omega$] (5,3.5);
+  \draw (0,3.5) -- (5,3.5); \draw (0,0) -- (5,0);
+  \draw[->,thick] (0.8,1.5) -- (0.8,2.5) node[midway,right] {$I_1$};
+  \draw[->,thick] (4.2,2.5) -- (4.2,1.5) node[midway,left] {$I_2$};
 \end{circuitikz}
+
 \end{document}
